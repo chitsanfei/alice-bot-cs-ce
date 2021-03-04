@@ -1,16 +1,24 @@
 ﻿<Properties StartupConfiguration="{9BA17CEC-198B-4373-A215-68430FBE6D47}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="alice-bot-cs/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="alice-bot-cs/Modules/GoodMoringAndNight.cs">
     <Files>
       <File FileName="alice-bot-cs/Program.cs" Line="52" Column="1" />
-      <File FileName="alice-bot-cs/Modules/RandomSetu.cs" Line="9" Column="23" />
+      <File FileName="alice-bot-cs/Extensions/LogExtension.cs" Line="1" Column="1" />
+      <File FileName="alice-bot-cs/Modules/GoodMoringAndNight.cs" Line="80" Column="22" />
+      <File FileName="alice-bot-cs/Entity/CoreConfig.cs" Line="1" Column="1" />
+      <File FileName="alice-bot-cs/Core/Init.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="alice-bot-cs" expanded="True">
             <Node name="alice-bot-cs" expanded="True">
-              <Node name="Modules" expanded="True" />
-              <Node name="Program.cs" selected="True" />
+              <Node name="Core" expanded="True" />
+              <Node name="Entity" expanded="True" />
+              <Node name="Extensions" expanded="True" />
+              <Node name="Modules" expanded="True">
+                <Node name="GoodMoringAndNight.cs" selected="True" />
+              </Node>
+              <Node name="Tools" expanded="True" />
             </Node>
           </Node>
         </State>
