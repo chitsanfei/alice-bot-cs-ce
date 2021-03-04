@@ -21,17 +21,24 @@ namespace alice_bot_cs.Modules
         public async Task<bool> GroupMessage(MiraiHttpSession session, IGroupMessageEventArgs e)
         {
             string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain);
-            if (str.Contains("搞色图"))
+            if (str.Contains("随机色图"))
             {
                 LogExtension.Log("", "色图搜寻开始");
+                IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！");
+                await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
                 RandomSetuExtension rse = new RandomSetuExtension();
                 rse.getSetu();
                 url = rse.getSetuUrl();
                 pid = rse.getSetuPid();
+                path = rse.returnSetu();
                 LogExtension.Log("", "请求到内容：" + url + " pid为：" + pid);
+                await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
                 bool flag = rse.downloadSetu();
                 LogExtension.Log("", "下载模块返回：" + flag);
-                path = rse.returnSetu();
+                IMessageBase plainFetchedLine1 = new PlainMessage($"已解析到色图=w=");
+                IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}");
+                IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}");
+                IMessageBase plainFetchedLine4 = new PlainMessage($"下载错误情况：{flag}");
                 await SendPictureAsync(session, path, e.Sender.Group.Id);
             }
             return false;

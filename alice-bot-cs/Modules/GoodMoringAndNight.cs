@@ -1,5 +1,4 @@
 ﻿using alice_bot_cs.Extensions;
-using alice_bot_cs.Habit;
 using Mirai_CSharp.Extensions;
 using Mirai_CSharp.Models;
 using Mirai_CSharp.Plugin.Interfaces;
