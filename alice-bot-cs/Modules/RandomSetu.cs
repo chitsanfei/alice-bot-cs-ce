@@ -32,13 +32,13 @@ namespace alice_bot_cs.Modules
                 pid = rse.getSetuPid();
                 path = rse.returnSetu();
                 LogExtension.Log("", "请求到内容：" + url + " pid为：" + pid);
-                await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
                 bool flag = rse.downloadSetu();
                 LogExtension.Log("", "下载模块返回：" + flag);
-                IMessageBase plainFetchedLine1 = new PlainMessage($"已解析到色图=w=");
-                IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}");
-                IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}");
+                IMessageBase plainFetchedLine1 = new PlainMessage($"已解析到色图=w=\n");
+                IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}\n");
+                IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}\n");
                 IMessageBase plainFetchedLine4 = new PlainMessage($"下载错误情况：{flag}");
+                await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1, plainFetchedLine2, plainFetchedLine3, plainFetchedLine4);
                 await SendPictureAsync(session, path, e.Sender.Group.Id);
             }
             return false;

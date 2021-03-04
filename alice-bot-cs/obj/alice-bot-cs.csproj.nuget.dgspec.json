@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/alice-bot-cs.csproj": {}
+    "/Users/mashirosa/Git/alice-bot-cs-ce/alice-bot-cs/alice-bot-cs.csproj": {}
   },
   "projects": {
-    "/Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/alice-bot-cs.csproj": {
+    "/Users/mashirosa/Git/alice-bot-cs-ce/alice-bot-cs/alice-bot-cs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/alice-bot-cs.csproj",
+        "projectUniqueName": "/Users/mashirosa/Git/alice-bot-cs-ce/alice-bot-cs/alice-bot-cs.csproj",
         "projectName": "alice-bot-cs",
-        "projectPath": "/Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/alice-bot-cs.csproj",
+        "projectPath": "/Users/mashirosa/Git/alice-bot-cs-ce/alice-bot-cs/alice-bot-cs.csproj",
         "packagesPath": "/Users/mashirosa/.nuget/packages/",
-        "outputPath": "/Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/obj/",
+        "outputPath": "/Users/mashirosa/Git/alice-bot-cs-ce/alice-bot-cs/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/mashirosa/.config/NuGet/NuGet.Config"

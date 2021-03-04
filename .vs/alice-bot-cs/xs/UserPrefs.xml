@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{9BA17CEC-198B-4373-A215-68430FBE6D47}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="alice-bot-cs/Program.cs">
+    <Files>
+      <File FileName="alice-bot-cs/Program.cs" Line="52" Column="1" />
+      <File FileName="alice-bot-cs/Modules/RandomSetu.cs" Line="9" Column="23" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="alice-bot-cs" expanded="True">
+            <Node name="alice-bot-cs" expanded="True">
+              <Node name="Modules" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.alice-bot-cs PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
