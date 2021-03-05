@@ -58,7 +58,7 @@ namespace Mirai_CSharp.Example
             sw.Close();
         }
 
-        public int Timer() // 检查时间，使得第二天的数据清除且计次重置
+        public int Timer() // 检查时间，使得第二天的数据清除且计次重置 todo:重置方法可能存在问题，待调试
         {
             if(day == int.Parse(DateTime.Now.DayOfYear.ToString()) || day == -1)
             {

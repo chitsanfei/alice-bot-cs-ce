@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using alice_bot_cs.Entity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -33,8 +34,8 @@ namespace alice_bot_cs.Extensions
         string setudata = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomSetu");
         string setufile;
         /*
-         * todo:添加压缩图片方法，简化代码
-         * todo:添加对r18的外部控制
+         * todo:添加压缩图片方法，简化代码 @author MashiroSA 
+         * todo:添加对r18的外部控制 @author MashiroSA 
          */
 
         public RandomSetuExtension() // 构造方法
@@ -82,7 +83,7 @@ namespace alice_bot_cs.Extensions
         private void parseSetu(string setuJson)
         {
             LoliconJson result = JsonConvert.DeserializeObject<LoliconJson>(setuJson);
-            if(result.Code == 0)
+            if(result.code == 0)
             {
                 originalurl = result.data[0].url;
                 pid = result.data[0].pid;
@@ -136,29 +137,5 @@ namespace alice_bot_cs.Extensions
                 w.Close();
             }
         }
-    }
-
-    class LoliconJson
-    {
-        public int Code { get; set; }
-        public string msg { get; set; }
-        public int quota { get; set; }
-        public int quota_min_ttl { get; set; }
-        public int count { get; set; }
-        public List<SetuImageJson> data { get; set; }
-    }
-
-    class SetuImageJson
-    {
-        public int pid { get; set; }
-        public int p { get; set; }
-        public int uid { get; set; }
-        public string title { get; set; }
-        public string author { get; set; }
-        public string url { get; set; }
-        public bool r18 { get; set; }
-        public int width { get; set; }
-        public int height { get; set; }
-        public List<string> tags { get; set; }
     }
 }
