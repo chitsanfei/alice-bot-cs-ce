@@ -1,2 +1,3 @@
-alice-bot-cs/bin
-alice-bot-cs/obj
+alice-bot-cs/bin/
+alice-bot-cs/obj/
+.vs/
