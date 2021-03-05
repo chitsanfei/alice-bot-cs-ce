@@ -27,13 +27,13 @@ namespace alice_bot_cs.Modules
                 IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
                 RandomSetuExtension rse = new RandomSetuExtension();
-                rse.getSetu();
-                url = rse.getSetuUrl();
-                pid = rse.getSetuPid();
-                path = rse.returnSetu();
+                rse.getSetu(); // 调用获取色图方法
+                url = rse.getSetuUrl(); // 获得色图原url
+                pid = rse.getSetuPid(); // 获得色图pid
                 LogExtension.Log("", "请求到内容：" + url + " pid为：" + pid);
-                bool flag = rse.downloadSetu();
+                bool flag = rse.downloadSetu(); // 下载色图，必须在获取色图后
                 LogExtension.Log("", "下载模块返回：" + flag);
+                path = rse.returnSetu(); // 返回路径，必须在下载色图后
                 IMessageBase plainFetchedLine1 = new PlainMessage($"已解析到色图=w=\n");
                 IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}\n");
                 IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}\n");

@@ -22,7 +22,7 @@ namespace Mirai_CSharp.Example
 
         public void CreateData() // 创建txt作为发送者id数据存储
         {
-            String path = AppDomain.CurrentDomain.BaseDirectory + @"/data/GoodMoringData.txt";
+            String path = AppDomain.CurrentDomain.BaseDirectory + "/data/GoodMoringData.txt";
             if (false == System.IO.Directory.Exists(path))
             {
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
@@ -33,7 +33,7 @@ namespace Mirai_CSharp.Example
 
         public int Checker(String sub) // 检查发送者是否重复发送早安
         {
-            StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"/data/GoodMoringData.txt", Encoding.Default);
+            StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/data/GoodMoringData.txt", Encoding.Default);
             String line;
             int checkbox = 0;
             while ((line = sr.ReadLine()) != null)
@@ -51,7 +51,7 @@ namespace Mirai_CSharp.Example
         public void WriteData(string sub) // 写入发送者的QQ号
         {
             LogExtension.Log("", "已接收早安传入数据：" + sub);
-            FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"/data/GoodMoringData.txt", FileMode.Append);
+            FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "/data/GoodMoringData.txt", FileMode.Append);
             StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(sub);
             sw.Flush();
@@ -68,7 +68,7 @@ namespace Mirai_CSharp.Example
             else
             {
                 count = 1;
-                DirectoryInfo d = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + @"/config/GoodMoringData.txt");
+                DirectoryInfo d = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + "/config/GoodMoringData.txt");
                 LogExtension.Log("", "早晚安插件的重置发生，这是一个检查输出，当无问题时可以删除");
                 d.Delete(true);
                 CreateData();
