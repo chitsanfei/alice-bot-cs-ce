@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "li+HFtnPM6Gh4Q22SWXaZNdBX1IkHovFb37twVOruG4Xf2o4tbmYEUpABOfO+QSW0fXN/FPp+3eGHvxN8+A9rw==",
+  "dgSpecHash": "WjYsxxfn4BVor0Ze3KSU222cnI7dSQdHrEzYGkLY4t1CA0RAhbw8QRr7jp3y/eoXqPEPdj/Cc0HXCOEQlDRYEA==",
   "success": true,
-  "projectFilePath": "/Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/alice-bot-cs.csproj",
+  "projectFilePath": "/Users/mashirosa/Git/alice-bot-cs-ce/alice-bot-cs/alice-bot-cs.csproj",
   "expectedPackageFiles": [
     "/Users/mashirosa/.nuget/packages/entityframework/6.3.0/entityframework.6.3.0.nupkg.sha512",
     "/Users/mashirosa/.nuget/packages/microsoft.csharp/4.6.0/microsoft.csharp.4.6.0.nupkg.sha512",

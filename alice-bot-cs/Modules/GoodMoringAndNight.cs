@@ -1,5 +1,4 @@
 ﻿using alice_bot_cs.Extensions;
-using alice_bot_cs.Habit;
 using Mirai_CSharp.Extensions;
 using Mirai_CSharp.Models;
 using Mirai_CSharp.Plugin.Interfaces;
@@ -14,7 +13,7 @@ namespace Mirai_CSharp.Example
     public partial class GoodMoringAndNight : IGroupMessage
     {
         private int count = 1; // 计次
-        private int day; // 计日程
+        private int day = -1; // 计日程
 
         public GoodMoringAndNight() // 这是一个早晚安功能的模块，构造方法
         {
@@ -51,7 +50,9 @@ namespace Mirai_CSharp.Example
 
         public void WriteData(string sub) // 写入发送者的QQ号
         {
-            StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"/data/GoodMoringData.txt", true);
+            LogExtension.Log("", "已接收早安传入数据：" + sub);
+            FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"/data/GoodMoringData.txt", FileMode.Append);
+            StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(sub);
             sw.Flush();
             sw.Close();
@@ -59,9 +60,9 @@ namespace Mirai_CSharp.Example
 
         public int Timer() // 检查时间，使得第二天的数据清除且计次重置
         {
-            DateTime dt = new DateTime();
-            day = dt.Day;
-            if(day == dt.Day){
+            if(day == int.Parse(DateTime.Now.DayOfYear.ToString()) || day == -1)
+            {
+                day = int.Parse(DateTime.Now.DayOfYear.ToString());
                 return 0;
             }
             else
@@ -71,6 +72,7 @@ namespace Mirai_CSharp.Example
                 LogExtension.Log("", "早晚安插件的重置发生，这是一个检查输出，当无问题时可以删除");
                 d.Delete(true);
                 CreateData();
+                day = int.Parse(DateTime.Now.DayOfYear.ToString());
                 return 0;
             }
         }

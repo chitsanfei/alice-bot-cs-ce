@@ -42,3 +42,4 @@
 /Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/obj/Release/net5.0/ref/alice-bot-cs.dll
 /Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/obj/Release/net5.0/alice-bot-cs.pdb
 /Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/obj/Release/net5.0/alice-bot-cs.genruntimeconfig.cache
+/Users/mashirosa/Git/alice-bot-cs/alice-bot-cs/obj/Release/net5.0/alice-bot-cs.csprojAssemblyReference.cache

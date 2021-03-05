@@ -15,7 +15,7 @@
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Modules\" />
-    <Folder Include="Habit\" />
+    <Folder Include="Core\" />
     <Folder Include="Tools\" />
     <Folder Include="Entity\" />
   </ItemGroup>

@@ -34,6 +34,7 @@ namespace alice_bot_cs.Extensions
         string setufile;
         /*
          * todo:添加压缩图片方法，简化代码
+         * todo:添加对r18的外部控制
          */
 
         public RandomSetuExtension() // 构造方法
