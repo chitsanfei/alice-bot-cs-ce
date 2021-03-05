@@ -1,18 +1,18 @@
 ﻿<Properties StartupConfiguration="{9BA17CEC-198B-4373-A215-68430FBE6D47}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="alice-bot-cs/Extensions/LogExtension.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="alice-bot-cs/Modules/RandomSetu.cs">
     <Files>
-      <File FileName="alice-bot-cs/Program.cs" Line="60" Column="14" />
-      <File FileName="alice-bot-cs/Extensions/LogExtension.cs" Line="1" Column="1" />
+      <File FileName="alice-bot-cs/Program.cs" Line="30" Column="48" />
+      <File FileName="alice-bot-cs/Extensions/LogExtension.cs" />
       <File FileName="alice-bot-cs/Modules/GoodMoringAndNight.cs" />
-      <File FileName="alice-bot-cs/Entity/CoreConfig.cs" Line="8" Column="24" />
-      <File FileName="alice-bot-cs/Core/Init.cs" />
-      <File FileName="alice-bot-cs/Modules/BotBehaviourControl.cs" Line="33" Column="10" />
+      <File FileName="alice-bot-cs/Entity/CoreConfig.cs" />
+      <File FileName="alice-bot-cs/Core/Init.cs" Line="39" Column="85" />
+      <File FileName="alice-bot-cs/Modules/BotBehaviourControl.cs" />
       <File FileName="alice-bot-cs/Modules/Template.cs" />
       <File FileName="alice-bot-cs/Extensions/RandomSetuExtension.cs" />
-      <File FileName="alice-bot-cs/Modules/GroupEventNotice.cs" />
-      <File FileName="alice-bot-cs/Modules/RandomSetu.cs" />
-      <File FileName="alice-bot-cs/Entity/BotBehaviourConfig.cs" Line="20" Column="6" />
-      <File FileName="alice-bot-cs/Entity/LoliconJson.cs" Line="15" Column="1" />
+      <File FileName="alice-bot-cs/Modules/GroupEventNotice.cs" Line="1" Column="1" />
+      <File FileName="alice-bot-cs/Modules/RandomSetu.cs" Line="1" Column="1" />
+      <File FileName="alice-bot-cs/Entity/BotBehaviourConfig.cs" />
+      <File FileName="alice-bot-cs/Entity/LoliconJson.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,10 +22,10 @@
               <Node name="Dependencies" expanded="True" />
               <Node name="Core" expanded="True" />
               <Node name="Entity" expanded="True" />
-              <Node name="Extensions" expanded="True">
-                <Node name="RandomSetuExtension.cs" selected="True" />
+              <Node name="Extensions" expanded="True" />
+              <Node name="Modules" expanded="True">
+                <Node name="Template.cs" selected="True" />
               </Node>
-              <Node name="Modules" expanded="True" />
             </Node>
           </Node>
         </State>
