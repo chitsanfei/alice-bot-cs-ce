@@ -92,7 +92,17 @@ namespace alice_bot_cs.Extensions
 
         public bool downloadSetu()
         {
-            setufile = Path.Combine(setudata, pid + ".jpg");
+            if (originalurl.Contains("jpg"))
+            {
+                setufile = Path.Combine(setudata, pid + ".jpg");
+            }
+            else if(originalurl.Contains("png")){
+                setufile = Path.Combine(setudata, pid + ".png");
+            }
+            else
+            {
+                setufile = Path.Combine(setudata, pid + ".jpg");
+            }
             byte[] pic = GetBytesFromUrl(this.originalurl);
             WriteBytesToFile(this.setufile, pic);
             bool flag = false;
