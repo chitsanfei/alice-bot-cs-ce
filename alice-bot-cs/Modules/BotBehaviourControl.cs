@@ -42,7 +42,7 @@ namespace alice_bot_cs.Modules
             }
             else
             {
-                await session.HandleGroupApplyAsync(e, GroupApplyActions.Deny, "根据相关的设置，还不能将机器人拉入群内哦！QAQ");
+                await session.HandleBotInvitedJoinGroupAsync(e, GroupApplyActions.Deny, "根据相关的设置，还不能将机器人拉入群内哦！QAQ");
             }
             LogExtension.Log("", "来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了拉群请求给机器人，处理情况：" + flag);
             return false;
@@ -92,11 +92,11 @@ namespace alice_bot_cs.Modules
                 .Build();
             string s = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"/config/BotBehaviourConfig.yaml");
             var c = deserializer.Deserialize<BotBehaviourConfig>(s);
-            if (c.request.groupRequest.ToLower().Equals("t"))
+            if (c.request.friendRequest.ToLower().Equals("t"))
             {
                 return true;
             }
-            else if (c.request.groupRequest.ToLower().Equals("f"))
+            else if (c.request.friendRequest.ToLower().Equals("f"))
             {
                 return false;
             }
