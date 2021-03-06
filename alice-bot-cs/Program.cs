@@ -3,7 +3,6 @@ using alice_bot_cs.Entity; // 实体类
 using alice_bot_cs.Extensions; // 扩展
 using alice_bot_cs.Modules; // 插件
 using Mirai_CSharp;
-using Mirai_CSharp.Example;
 using Mirai_CSharp.Models;
 using System;
 using System.IO;
@@ -34,7 +33,7 @@ namespace alice_bot_cs
             /*
              * 插件装载
              */
-            GoodMoringAndNight goodMoringAndNight = new GoodMoringAndNight(); // 早晚安插件
+            GoodMorningAndNight goodMoringAndNight = new GoodMorningAndNight(); // 早晚安插件
             GroupEventNotice groupEventNotice = new GroupEventNotice(); // 事件通知插件
             RandomSetu randomSetu = new RandomSetu();
             BotBehaviourControl botBehaviourControl = new BotBehaviourControl(qq); // 机器人行为控制，记得传入机器人QQ号
