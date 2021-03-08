@@ -26,19 +26,23 @@ namespace alice_bot_cs.Modules
                 LogExtension.Log("", "色图搜寻开始");
                 IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
+
                 RandomSetuExtension rse = new RandomSetuExtension();
-                rse.getSetu(); // 调用获取色图方法
-                url = rse.getSetuUrl(); // 获得色图原url
-                pid = rse.getSetuPid(); // 获得色图pid
+                rse.GetSetu(); // 调用获取色图方法
+                url = rse.GetSetuUrl(); // 获得色图原url
+                pid = rse.GetSetuPid(); // 获得色图pid
                 LogExtension.Log("", "请求到内容：" + url + " pid为：" + pid);
-                bool flag = rse.downloadSetu(); // 下载色图，必须在获取色图后
+
+                bool flag = rse.DownloadSetu(); // 下载色图，必须在获取色图后
                 LogExtension.Log("", "下载模块返回：" + flag);
-                path = rse.returnSetu(); // 返回路径，必须在下载色图后
+                path = rse.ReturnSetu(); // 返回路径，必须在下载色图后
+
                 IMessageBase plainFetchedLine1 = new PlainMessage($"已解析到色图=w=\n");
                 IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}\n");
                 IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}\n");
                 IMessageBase plainFetchedLine4 = new PlainMessage($"下载错误情况：{flag}");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1, plainFetchedLine2, plainFetchedLine3, plainFetchedLine4);
+
                 await SendPictureAsync(session, path, e.Sender.Group.Id);
             }
             return false;
