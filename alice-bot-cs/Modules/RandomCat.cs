@@ -22,8 +22,8 @@ namespace alice_bot_cs.Modules
             string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain);
             if (str.Contains("随机猫猫"))
             {
-                LogExtension.Log("", "猫猫搜寻开始");
-                IMessageBase plainStart = new PlainMessage($"正在为你寻找猫猫，稍安勿躁哦！");
+                LogExtension.Log("", "随机猫猫:猫猫搜寻开始");
+                IMessageBase plainStart = new PlainMessage($"随机猫猫:正在为你寻找猫猫，稍安勿躁哦！");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
                 RandomCatExtension rc = new RandomCatExtension();
@@ -42,7 +42,7 @@ namespace alice_bot_cs.Modules
 
         private async Task SendPictureAsync(MiraiHttpSession session, string path, long target) // 发送图片方法
         {
-            LogExtension.Log("", "调用猫猫发送模块，路径为:" + path + " 目标群：" + target);
+            LogExtension.Log("", "随机猫猫:调用猫猫发送模块，路径为:" + path + " 目标群：" + target);
             ImageMessage msg = await session.UploadPictureAsync(UploadTarget.Group, path);
             IMessageBase[] chain = new IMessageBase[] { msg };
             await session.SendGroupMessageAsync(target, chain);

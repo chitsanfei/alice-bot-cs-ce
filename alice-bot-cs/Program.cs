@@ -44,15 +44,15 @@ namespace alice_bot_cs
             RandomCat randomCat = new RandomCat();
 
             session.AddPlugin(goodMoringAndNight);
-            LogExtension.Log("", "早晚安插件装载成功");
+            LogExtension.Log("", "插件装载:早晚安插件装载成功");
             session.AddPlugin(groupEventNotice);
-            LogExtension.Log("", "事件通知插件装载成功");
+            LogExtension.Log("", "插件装载:事件通知插件装载成功");
             session.AddPlugin(randomSetu);
-            LogExtension.Log("", "色图插件装载成功");
+            LogExtension.Log("", "插件装载:色图插件装载成功");
             session.AddPlugin(botBehaviourControl);
-            LogExtension.Log("", "机器人行为处理插件装载成功");
+            LogExtension.Log("", "插件装载:机器人行为处理插件装载成功");
             session.AddPlugin(randomCat);
-            LogExtension.Log("", "随机猫猫插件装载成功");
+            LogExtension.Log("", "插件装载:随机猫猫插件装载成功");
 
             LogExtension.Log("", "插件装载成功，Alice已经启动");
 
