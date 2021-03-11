@@ -24,7 +24,7 @@ namespace alice_bot_cs.Modules
             {
                 RandomNBExtension rnbe = new RandomNBExtension();
                 talk = rnbe.GetNBTalk(e.Sender.Name);
-                IMessageBase plain = new PlainMessage(str);
+                IMessageBase plain = new PlainMessage(talk);
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plain);
             }
             else
