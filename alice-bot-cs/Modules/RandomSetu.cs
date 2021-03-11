@@ -20,24 +20,56 @@ namespace alice_bot_cs.Modules
 
         public async Task<bool> GroupMessage(MiraiHttpSession session, IGroupMessageEventArgs e)
         {
-            string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain);
-            if (str.Contains("随机色图"))
+            string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain); // 取消息
+
+            /*
+             * 请求lolicon api数据
+             */
+            if (str.Contains("随机色图") || str.Contains(".setu lolicon"))
             {
-                LogExtension.Log("", "色图插件:色图搜寻开始");
-                IMessageBase plainStart = new PlainMessage($"色图插件:正在为你寻找色图，稍安勿躁哦！");
+                LogExtension.Log("", "色图插件:对LoliconApi的色图搜寻开始");
+                IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！\n目标API:LoliconApi");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
-                RandomSetuExtension rse = new RandomSetuExtension();
-                rse.GetSetu(); // 调用获取色图方法
-                url = rse.GetSetuUrl(); // 获得色图原url
-                pid = rse.GetSetuPid(); // 获得色图pid
+                RandomSetuLoliconExtension rsle = new RandomSetuLoliconExtension();
+                rsle.GetSetu(); // 调用获取色图方法
+                url = rsle.GetSetuUrl(); // 获得色图原url
+                pid = rsle.GetSetuPid(); // 获得色图pid
                 LogExtension.Log("", "色图插件:请求到内容：" + url + " pid为：" + pid);
 
-                bool flag = rse.DownloadSetu(); // 下载色图，必须在获取色图后
+                bool flag = rsle.DownloadSetu(); // 下载色图，必须在获取色图后
                 LogExtension.Log("", "色图插件:下载模块返回：" + flag);
-                path = rse.ReturnSetu(); // 返回路径，必须在下载色图后
+                path = rsle.ReturnSetu(); // 返回路径，必须在下载色图后
 
-                IMessageBase plainFetchedLine1 = new PlainMessage($"已解析到色图=w=\n");
+                IMessageBase plainFetchedLine1 = new PlainMessage($"Alice已寻找到色图，正在调用发送方法\n");
+                IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}\n");
+                IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}\n");
+                IMessageBase plainFetchedLine4 = new PlainMessage($"下载错误情况：{flag}");
+                await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1, plainFetchedLine2, plainFetchedLine3, plainFetchedLine4);
+
+                await SendPictureAsync(session, path, e.Sender.Group.Id);
+            }
+
+            /*
+             * 请求elbotlolicon api数据
+             */
+            if (str.Contains(".setu elbot"))
+            {
+                LogExtension.Log("", "色图插件:对ElbotApi的色图搜寻开始");
+                IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！\n目标API:Elbot API");
+                await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
+
+                RandomSetuElExtension rsee = new RandomSetuElExtension();
+                rsee.GetSetu(); // 调用获取色图方法
+                url = rsee.GetSetuUrl(); // 获得色图原url
+                pid = rsee.GetSetuPid(); // 获得色图pid
+                LogExtension.Log("", "色图插件:请求到内容：" + url + " pid为：" + pid);
+
+                bool flag = rsee.DownloadSetu(); // 下载色图，必须在获取色图后
+                LogExtension.Log("", "色图插件:下载模块返回：" + flag);
+                path = rsee.ReturnSetu(); // 返回路径，必须在下载色图后
+
+                IMessageBase plainFetchedLine1 = new PlainMessage($"Alice已寻找到色图，正在调用发送方法\n");
                 IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}\n");
                 IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}\n");
                 IMessageBase plainFetchedLine4 = new PlainMessage($"下载错误情况：{flag}");

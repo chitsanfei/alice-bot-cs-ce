@@ -20,10 +20,10 @@ namespace alice_bot_cs.Modules
         public async Task<bool> GroupMessage(MiraiHttpSession session, IGroupMessageEventArgs e)
         {
             string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain);
-            if (str.Contains("随机猫猫"))
+            if (str.Contains("随机猫猫") || str.Contains(".cat"))
             {
                 LogExtension.Log("", "随机猫猫:猫猫搜寻开始");
-                IMessageBase plainStart = new PlainMessage($"随机猫猫:正在为你寻找猫猫，稍安勿躁哦！");
+                IMessageBase plainStart = new PlainMessage($"正在为你寻找猫猫，稍安勿躁哦！");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
                 RandomCatExtension rc = new RandomCatExtension();

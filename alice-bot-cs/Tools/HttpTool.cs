@@ -11,9 +11,9 @@ namespace alice_bot_cs.Tools
         {
         }
 
-        public static string Get(string Url, string postDataStr) // Http请求方法
+        public static string Get(string url, string postDataStr) // Http请求方法
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + (postDataStr == "" ? "" : "?") + postDataStr);
             request.Method = "GET";
             request.ContentType = "text/html;charset=UTF-8";
 
