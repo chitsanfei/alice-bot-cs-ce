@@ -28,7 +28,7 @@ namespace alice_bot_cs.Modules
             if (str.Contains("随机色图") || str.Contains(".setu lolicon"))
             {
                 LogExtension.Log("", "色图插件:对LoliconApi的色图搜寻开始");
-                IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！\n目标API:LoliconApi");
+                IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！\n目标API:Lolicon Api");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
                 RandomSetuLoliconExtension rsle = new RandomSetuLoliconExtension();

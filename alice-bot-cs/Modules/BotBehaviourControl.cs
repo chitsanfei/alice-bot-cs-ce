@@ -134,10 +134,6 @@ namespace alice_bot_cs.Modules
                     await session.SendGroupMessageAsync(e.Sender.Group.Id, plainMenuInfo);
                 }
             }
-            else
-            {
-                return true;
-            }
             return false; 
         }
 

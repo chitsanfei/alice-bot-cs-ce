@@ -43,6 +43,7 @@ namespace alice_bot_cs
             BotBehaviourControl botBehaviourControl = new BotBehaviourControl(qq); // 机器人行为控制，记得传入机器人QQ号
             RandomCat randomCat = new RandomCat();
             NBTalk nBTalk = new NBTalk();
+            OsuOsusig osuOsusig = new OsuOsusig();
 
             session.AddPlugin(goodMoringAndNight);
             LogExtension.Log("", "插件装载:早晚安插件装载成功");
@@ -56,6 +57,8 @@ namespace alice_bot_cs
             LogExtension.Log("", "插件装载:随机猫猫插件装载成功");
             session.AddPlugin(nBTalk);
             LogExtension.Log("", "插件装载:随机NB话插件装载成功");
+            session.AddPlugin(osuOsusig);
+            LogExtension.Log("", "插件装载:OSUSIG插件装载成功");
 
             LogExtension.Log("", "插件装载成功，Alice已经启动");
 

@@ -27,10 +27,6 @@ namespace alice_bot_cs.Modules
                 IMessageBase plain = new PlainMessage(talk);
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plain);
             }
-            else
-            {
-                return true;
-            }
             return false;
         }
     }
