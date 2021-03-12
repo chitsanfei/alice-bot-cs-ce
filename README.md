@@ -35,3 +35,4 @@ A simple QQ bot running with MiraiHttp and MiraiCSharp & 一个基于MiraiHttp�
 ## 注意事项
 - 一切仅供交流学习
 - 请使用c# >= 8.0建构项目
+- 请使用`dev`分支进行开发，`master`为稳定运行分支，请勿直接推送`master`分支commit
