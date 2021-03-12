@@ -46,7 +46,7 @@ namespace alice_bot_cs.Extensions
                     break;
             }
 
-            LogExtension.Log("", $"OSUSIG查询:有人调用了查询，{username}");
+            LogExtension.Log("", $"OSUSIG:将调用OSU个人资料，{username}");
             string api = $"https://osusig.lolicon.app/sig.php?colour={color}&uname={username}&pp=1&countryrank&removeavmargin&rankedscore&xpbar";
             dataFile = Path.Combine(dataPath, username + ".png");
             byte[] pic = HttpTool.GetBytesFromUrl(api);
