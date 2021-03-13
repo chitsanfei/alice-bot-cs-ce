@@ -1,9 +1,10 @@
 using System;
 using System.IO;
 using System.Threading;
+using alice_bot_cs.Core;
 using alice_bot_cs.Tools;
 
-namespace alice_bot_cs.Extensions
+namespace alice_bot_cs.Extensions.Osu
 {
     public class OsuOussigLoliconExtension
     {
@@ -15,7 +16,7 @@ namespace alice_bot_cs.Extensions
         {
             this.username = username;
             bool flag = DownloadOusSigPic();
-            LogExtension.Log("", "OSUSIG:调用下载返回了:" + flag); 
+            TraceLog.Log("", "OSUSIG:调用下载返回了:" + flag); 
             return dataFile;
         }
 
@@ -46,7 +47,7 @@ namespace alice_bot_cs.Extensions
                     break;
             }
 
-            LogExtension.Log("", $"OSUSIG:将调用OSU个人资料，{username}");
+            TraceLog.Log("", $"OSUSIG:将调用OSU个人资料，{username}");
             string api = $"https://osusig.lolicon.app/sig.php?colour={color}&uname={username}&pp=1&countryrank&removeavmargin&rankedscore&xpbar";
             dataFile = Path.Combine(dataPath, username + ".png");
             byte[] pic = HttpTool.GetBytesFromUrl(api);

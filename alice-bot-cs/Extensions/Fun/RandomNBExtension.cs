@@ -3,8 +3,9 @@ using alice_bot_cs.Tools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
+using alice_bot_cs.Core;
 
-namespace alice_bot_cs.Extensions
+namespace alice_bot_cs.Extensions.Fun
 {
     public class RandomNBExtension
     {
@@ -34,7 +35,7 @@ namespace alice_bot_cs.Extensions
             JArray ja = (JArray)JsonConvert.DeserializeObject(json);
             talk = ja[0].ToString();
             talk = Regex.Replace(talk, "\\${name}", name);
-            LogExtension.Log("", "NB插件:有人请求了NB话");
+            TraceLog.Log("", "NB插件:有人请求了NB话");
             this.str = talk;
         }
     }

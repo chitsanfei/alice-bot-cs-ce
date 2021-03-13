@@ -5,7 +5,7 @@ using System.Text;
 
 namespace alice_bot_cs.Tools
 {
-    public class HttpTool
+    public sealed class HttpTool
     {
         public HttpTool()
         {

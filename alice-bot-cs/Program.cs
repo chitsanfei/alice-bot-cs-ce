@@ -7,6 +7,7 @@ using Mirai_CSharp.Models;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using alice_bot_cs.Entity.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -44,23 +45,26 @@ namespace alice_bot_cs
             RandomCat randomCat = new RandomCat();
             NBTalk nBTalk = new NBTalk();
             OsuOsusig osuOsusig = new OsuOsusig();
+            RandomTouhouPic randomTouhouPic = new RandomTouhouPic();
 
             session.AddPlugin(goodMoringAndNight);
-            LogExtension.Log("", "插件装载:早晚安插件装载成功");
+            TraceLog.Log("", "插件装载:早晚安插件装载成功");
             session.AddPlugin(groupEventNotice);
-            LogExtension.Log("", "插件装载:事件通知插件装载成功");
+            TraceLog.Log("", "插件装载:事件通知插件装载成功");
             session.AddPlugin(randomSetu);
-            LogExtension.Log("", "插件装载:色图插件装载成功");
+            TraceLog.Log("", "插件装载:色图插件装载成功");
             session.AddPlugin(botBehaviourControl);
-            LogExtension.Log("", "插件装载:机器人行为处理插件装载成功");
+            TraceLog.Log("", "插件装载:机器人行为处理插件装载成功");
             session.AddPlugin(randomCat);
-            LogExtension.Log("", "插件装载:随机猫猫插件装载成功");
+            TraceLog.Log("", "插件装载:随机猫猫插件装载成功");
             session.AddPlugin(nBTalk);
-            LogExtension.Log("", "插件装载:随机NB话插件装载成功");
+            TraceLog.Log("", "插件装载:随机NB话插件装载成功");
             session.AddPlugin(osuOsusig);
-            LogExtension.Log("", "插件装载:OSUSIG插件装载成功");
+            TraceLog.Log("", "插件装载:OSUSIG插件装载成功");
+            session.AddPlugin(randomTouhouPic);
+            TraceLog.Log("", "插件装载:随机东方图片插件装载成功");
 
-            LogExtension.Log("", "插件装载成功，Alice已经启动");
+            TraceLog.Log("", "插件装载成功，Alice已经启动");
 
             /*
              * QQ

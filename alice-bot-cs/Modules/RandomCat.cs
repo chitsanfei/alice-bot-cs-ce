@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using alice_bot_cs.Core;
 using alice_bot_cs.Extensions;
+using alice_bot_cs.Extensions.Fun;
 using Mirai_CSharp;
 using Mirai_CSharp.Models;
 using Mirai_CSharp.Plugin.Interfaces;
@@ -19,10 +21,13 @@ namespace alice_bot_cs.Modules
 
         public async Task<bool> GroupMessage(MiraiHttpSession session, IGroupMessageEventArgs e)
         {
-            string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain);
-            if (str.Contains("随机猫猫") || str.Contains(".cat"))
+            string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain); // 取消息
+            string[] strArray = str.Split(new char[2] { '[', ']' }); // 分割Mirai码部分
+            str = strArray[2];
+            
+            if (str.Equals("随机猫猫") || str.Equals(".cat"))
             {
-                LogExtension.Log("", "随机猫猫:猫猫搜寻开始");
+                TraceLog.Log("", "随机猫猫:猫猫搜寻开始");
                 IMessageBase plainStart = new PlainMessage($"正在为你寻找猫猫，稍安勿躁哦！");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
@@ -42,7 +47,7 @@ namespace alice_bot_cs.Modules
 
         private async Task SendPictureAsync(MiraiHttpSession session, string path, long target) // 发送图片方法
         {
-            LogExtension.Log("", "随机猫猫:调用猫猫发送模块，路径为:" + path + " 目标群：" + target);
+            TraceLog.Log("", "随机猫猫:调用猫猫发送模块，路径为:" + path + " 目标群：" + target);
             ImageMessage msg = await session.UploadPictureAsync(UploadTarget.Group, path);
             IMessageBase[] chain = new IMessageBase[] { msg };
             await session.SendGroupMessageAsync(target, chain);

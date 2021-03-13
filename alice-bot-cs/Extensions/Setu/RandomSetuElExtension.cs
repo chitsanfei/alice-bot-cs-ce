@@ -6,18 +6,18 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using alice_bot_cs.Entity;
+using alice_bot_cs.Entity.Setu;
 using alice_bot_cs.Tools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace alice_bot_cs.Extensions
+namespace alice_bot_cs.Extensions.Setu
 {
-    public class RandomSetuLoliconExtension // 随机色图插件
+    public class RandomSetuElExtension // 随机色图插件，使用的是Elbot的API
     {
         /*
          * 下为色图API及基本信息变量生成
          */
-        string apikey = "365007185fc06c84ac62e6";
         int pid = 0;
         int p = 0;
         int uid = 0;
@@ -28,7 +28,7 @@ namespace alice_bot_cs.Extensions
         bool r18 = false;
         int width = 0;
         int height = 0;
-        List<string> tag;
+        List<string> tags;
 
         /*
          * 下为色图数据储存位置
@@ -36,17 +36,13 @@ namespace alice_bot_cs.Extensions
         string setuData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomSetu");
         string setuFile;
 
-        /*
-         * todo:添加压缩图片方法，简化代码 @author MashiroSA 
-         * todo:添加对r18的外部控制 @author MashiroSA 
-         */
-        public RandomSetuLoliconExtension() // 构造方法
+        public RandomSetuElExtension() // 构造方法
         {
         }
 
         public int GetSetu() // 色图获取方法
         {
-            string setuJson = HttpTool.Get($"http://api.lolicon.app/setu?apikey={apikey}&r18=0","");
+            string setuJson = HttpTool.Get($"https://el-bot-api.vercel.app/api/setu", "");
             ParseSetu(setuJson); // 处理由lolicon返回的json信息，并进行解析
             return 0;
         }
@@ -68,11 +64,11 @@ namespace alice_bot_cs.Extensions
 
         private void ParseSetu(string setuJson)
         {
-            LoliconJson result = JsonConvert.DeserializeObject<LoliconJson>(setuJson);
-            if(result.code == 0)
+            ElbotSetuJson result = JsonConvert.DeserializeObject<ElbotSetuJson>(setuJson);
+            if (result.ToString() != null)
             {
-                originalUrl = result.data[0].url;
-                pid = result.data[0].pid;
+                originalUrl = result.url;
+                pid = result.pid;
             }
         }
 
@@ -82,7 +78,8 @@ namespace alice_bot_cs.Extensions
             {
                 setuFile = Path.Combine(setuData, pid + ".jpg");
             }
-            else if(originalUrl.Contains("png")){
+            else if (originalUrl.Contains("png"))
+            {
                 setuFile = Path.Combine(setuData, pid + ".png");
             }
             else
@@ -90,8 +87,8 @@ namespace alice_bot_cs.Extensions
                 setuFile = Path.Combine(setuData, pid + ".jpg");
             }
 
-            byte[] pic = HttpTool.GetBytesFromUrl(this.originalUrl);
-            HttpTool.WriteBytesToFile(this.setuFile, this.setuData, pic);
+            byte[] pic = HttpTool.GetBytesFromUrl(originalUrl);
+            HttpTool.WriteBytesToFile(setuFile, setuData, pic);
             bool flag = false;
             return flag;
         }

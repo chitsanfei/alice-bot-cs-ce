@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using alice_bot_cs.Entity;
+using alice_bot_cs.Entity.Core;
+using alice_bot_cs.Entity.Modules;
+using alice_bot_cs.Entity.ModulesConfig;
 using alice_bot_cs.Extensions;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -30,7 +33,7 @@ namespace alice_bot_cs.Core
             {
                 System.IO.Directory.CreateDirectory(dataPath);
             }
-            LogExtension.Log("", "初始化:数据文件夹:执行成功");
+            TraceLog.Log("", "初始化:数据文件夹:执行成功");
             return 0;
         }
 
@@ -56,7 +59,7 @@ namespace alice_bot_cs.Core
                 StreamWriter asw = new StreamWriter(afs);
                 asw.Write(yaml);
                 asw.Close();
-                LogExtension.Log("", "初始化:InitCoreConfig:执行成功");
+                TraceLog.Log("", "初始化:InitCoreConfig:执行成功");
             }
             return 0;
         }
@@ -80,7 +83,7 @@ namespace alice_bot_cs.Core
                     menu = new Menu
                     {
                         help = "Alice Core Menu \n输入以下指令查看详情\n.list：查看可用指令\n.info：查看项目详情",
-                        list = "可用指令如下：\n- .setu lolicon 或 随机色图 或 .setu elbot：获取一张色图\n- 早安、晚安：一个简单的早晚安\n- .cat 或 随机猫猫：获得一个随机猫猫\n- .nb：生成一个nb话\n- .osusig id：查询osu资料",
+                        list = "可用指令如下：\n- .setu (api) 或 随机色图： 获取一张色图\n- 早安、晚安：一个简单的早晚安\n- .cat 或 随机猫猫：获得一个随机猫猫\n- .nb：生成一个nb话\n- .osusig id：查询osu资料\n- .setu api：查询可供使用的api",
                         info = "Project Alice - 一个多人协作写的屑QQBOT\n- 使用项目:Mirai、MiraiCS、MiraiHttp\n- 开发团队:https://github.com/MeowCatZ",
                     }
                 };
@@ -90,7 +93,7 @@ namespace alice_bot_cs.Core
                 StreamWriter asw = new StreamWriter(afs);
                 asw.Write(yaml);
                 asw.Close();
-                LogExtension.Log("", "初始化:InitBotBehaviourConfig:执行成功");
+                TraceLog.Log("", "初始化:InitBotBehaviourConfig:执行成功");
             }
             return 0;
         }

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace alice_bot_cs.Entity
+namespace alice_bot_cs.Entity.Setu
 {
     public class ElbotSetuJson
     {

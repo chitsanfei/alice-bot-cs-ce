@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using alice_bot_cs.Entity;
+using alice_bot_cs.Entity.Fun;
 using alice_bot_cs.Tools;
 using Newtonsoft.Json;
 
-namespace alice_bot_cs.Extensions
+namespace alice_bot_cs.Extensions.Fun
 {
     public class RandomCatExtension
     {

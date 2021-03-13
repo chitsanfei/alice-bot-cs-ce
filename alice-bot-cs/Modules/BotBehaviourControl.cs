@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using alice_bot_cs.Core;
 using alice_bot_cs.Entity;
-using alice_bot_cs.Extensions;
+using alice_bot_cs.Entity.Modules;
+using alice_bot_cs.Entity.ModulesConfig;
 using Mirai_CSharp;
 using Mirai_CSharp.Models;
 using Mirai_CSharp.Plugin.Interfaces;
@@ -44,7 +46,7 @@ namespace alice_bot_cs.Modules
             {
                 await session.HandleBotInvitedJoinGroupAsync(e, GroupApplyActions.Deny, "根据相关的设置，还不能将机器人拉入群内哦！QAQ");
             }
-            LogExtension.Log("", "行为控制:来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了拉群请求给机器人，处理情况：" + flag);
+            TraceLog.Log("", "行为控制:来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了拉群请求给机器人，处理情况：" + flag);
             return false;
         }
 
@@ -59,13 +61,13 @@ namespace alice_bot_cs.Modules
             {
                 await session.HandleNewFriendApplyAsync(e, FriendApplyAction.Deny, "根据相关的设置，还不能添加机器人为好友哦！QAQ");
             }
-            LogExtension.Log("", "行为控制:来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了添加好友请求给机器人，处理情况：" + flag);
+            TraceLog.Log("", "行为控制:来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了添加好友请求给机器人，处理情况：" + flag);
             return false;
         }
 
         private bool GroupRequestChecker()
         {
-            LogExtension.Log("", "行为控制:收到组邀请检查请求");
+            TraceLog.Log("", "行为控制:收到组邀请检查请求");
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
@@ -86,7 +88,7 @@ namespace alice_bot_cs.Modules
 
         private bool FriendRequestChecker()
         {
-            LogExtension.Log("", "行为控制:收到好友邀请检查请求");
+            TraceLog.Log("", "行为控制:收到好友邀请检查请求");
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
@@ -112,22 +114,24 @@ namespace alice_bot_cs.Modules
         public async Task<bool> GroupMessage(MiraiHttpSession session, IGroupMessageEventArgs e)
         {
             
-            string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain);
+            string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain); // 取消息
+            string[] strArray = str.Split(new char[2] { '[', ']' }); // 分割Mirai码部分
+            str = strArray[2];
             if(e.Sender.Id != botqq)
             {
-                if (str.Contains(".help"))
+                if (str.Equals(".help"))
                 {
                     BotBehaviourConfigMenuTrans();
                     IMessageBase plainMenuHelp = new PlainMessage(this.help);
                     await session.SendGroupMessageAsync(e.Sender.Group.Id, plainMenuHelp);
                 }
-                if (str.Contains(".list"))
+                if (str.Equals(".list"))
                 {
                     BotBehaviourConfigMenuTrans();
                     IMessageBase plainMenuList = new PlainMessage(this.list);
                     await session.SendGroupMessageAsync(e.Sender.Group.Id, plainMenuList);
                 }
-                if (str.Contains(".info"))
+                if (str.Equals(".info"))
                 {
                     BotBehaviourConfigMenuTrans();
                     IMessageBase plainMenuInfo = new PlainMessage(this.info);
@@ -139,7 +143,7 @@ namespace alice_bot_cs.Modules
 
         private void BotBehaviourConfigMenuTrans()
         {
-            LogExtension.Log("", "行为控制:菜单检查事件被触发");
+            TraceLog.Log("", "行为控制:菜单检查事件被触发");
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();

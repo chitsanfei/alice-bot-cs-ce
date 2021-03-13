@@ -2,11 +2,11 @@
 using System.IO;
 using System.Text;
 
-namespace alice_bot_cs.Extensions
+namespace alice_bot_cs.Core
 {
-    public class LogExtension
+    public class TraceLog
     {
-        public LogExtension()
+        public TraceLog()
         {
         }
 
