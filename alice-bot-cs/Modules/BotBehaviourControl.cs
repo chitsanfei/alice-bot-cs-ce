@@ -44,7 +44,7 @@ namespace alice_bot_cs.Modules
             {
                 await session.HandleBotInvitedJoinGroupAsync(e, GroupApplyActions.Deny, "根据相关的设置，还不能将机器人拉入群内哦！QAQ");
             }
-            LogExtension.Log("", "来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了拉群请求给机器人，处理情况：" + flag);
+            LogExtension.Log("", "行为控制:来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了拉群请求给机器人，处理情况：" + flag);
             return false;
         }
 
@@ -59,13 +59,13 @@ namespace alice_bot_cs.Modules
             {
                 await session.HandleNewFriendApplyAsync(e, FriendApplyAction.Deny, "根据相关的设置，还不能添加机器人为好友哦！QAQ");
             }
-            LogExtension.Log("", "来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了添加好友请求给机器人，处理情况：" + flag);
+            LogExtension.Log("", "行为控制:来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了添加好友请求给机器人，处理情况：" + flag);
             return false;
         }
 
         private bool GroupRequestChecker()
         {
-            LogExtension.Log("", "收到组邀请检查请求");
+            LogExtension.Log("", "行为控制:收到组邀请检查请求");
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
@@ -86,7 +86,7 @@ namespace alice_bot_cs.Modules
 
         private bool FriendRequestChecker()
         {
-            LogExtension.Log("", "收到好友邀请检查请求");
+            LogExtension.Log("", "行为控制:收到好友邀请检查请求");
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
@@ -134,16 +134,12 @@ namespace alice_bot_cs.Modules
                     await session.SendGroupMessageAsync(e.Sender.Group.Id, plainMenuInfo);
                 }
             }
-            else
-            {
-                return true;
-            }
             return false; 
         }
 
         private void BotBehaviourConfigMenuTrans()
         {
-            LogExtension.Log("", "菜单检查事件被触发");
+            LogExtension.Log("", "行为控制:菜单检查事件被触发");
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();

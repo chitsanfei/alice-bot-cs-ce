@@ -45,7 +45,7 @@ namespace alice_bot_cs.Core
                 sw.Close();
                 var cc = new CoreConfig
                 {
-                    account = "2227391033",
+                    account = "3410869782",
                     ip = "127.0.0.1",
                     port = "8080",
                     authkey = "1145141919810",
@@ -79,8 +79,8 @@ namespace alice_bot_cs.Core
                     },
                     menu = new Menu
                     {
-                        help = "Alice Core Menu \n输入以下指令查看详情\n.list:查看可用指令\n.info:查看项目详情",
-                        list = "可用指令如下：\n- 随机色图:获取一张色图\n- 早安、晚安:一个简单的早晚安",
+                        help = "Alice Core Menu \n输入以下指令查看详情\n.list：查看可用指令\n.info：查看项目详情",
+                        list = "可用指令如下：\n- .setu lolicon 或 随机色图 或 .setu elbot：获取一张色图\n- 早安、晚安：一个简单的早晚安\n- .cat 或 随机猫猫：获得一个随机猫猫\n- .nb：生成一个nb话\n- .osusig id：查询osu资料",
                         info = "Project Alice - 一个多人协作写的屑QQBOT\n- 使用项目:Mirai、MiraiCS、MiraiHttp\n- 开发团队:https://github.com/MeowCatZ",
                     }
                 };
