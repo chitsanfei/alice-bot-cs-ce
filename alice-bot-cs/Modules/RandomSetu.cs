@@ -31,7 +31,7 @@ namespace alice_bot_cs.Modules
              */
             if (str.Equals(".setu api"))
             {
-                IMessageBase tips = new PlainMessage($"- 随机色图支持的api有：lolicon elbot ffs mty\n- 您可以使用.setu [api名称]（如.setu lolicon）请求对应api的色图 ");
+                IMessageBase tips = new PlainMessage($"- 随机色图支持的api有：lolicon elbot ecy mty\n- 您可以使用.setu [api名称]（如.setu lolicon）请求对应api的色图 ");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, tips);
             }
 
@@ -98,16 +98,16 @@ namespace alice_bot_cs.Modules
             }
             
             /*
-             * 请求ffs api数据
+             * 请求ecy api数据
              */
-            if (str.Equals(".setu ffs"))
+            if (str.Equals(".setu ecy"))
             {
-                TraceLog.Log("", "色图插件:对FfsApi的色图搜寻开始");
-                IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！\n目标API:Firefliestudio API");
+                TraceLog.Log("", "色图插件:对EcyApi的色图搜寻开始");
+                IMessageBase plainStart = new PlainMessage($"正在为你寻找色图，稍安勿躁哦！\n目标API:Ecy API");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
-                RandomSetuFfsExtension rsfe = new RandomSetuFfsExtension();
-                path = rsfe.GetSetu();
+                RandomSetuEcyExtension ecy = new RandomSetuEcyExtension();
+                path = ecy.GetSetu();
 
                 IMessageBase plainFetchedLine1 = new PlainMessage($"Alice已寻找到色图，正在调用发送方法\n请注意，该API不支持详细信息解析");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1);

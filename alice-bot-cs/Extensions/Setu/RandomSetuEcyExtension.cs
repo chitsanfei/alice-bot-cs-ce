@@ -1,16 +1,17 @@
 using System.IO;
+using alice_bot_cs.Core;
 using alice_bot_cs.Tools;
 
 namespace alice_bot_cs.Extensions.Setu
 {
-    public class RandomSetuFfsExtension
+    public class RandomSetuEcyExtension
     {
         /*
          * 下为色图数据储存位置
          */
         private string setuData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomSetu");
         private string setuFile;
-        private static string apiUrl = "http://random.firefliestudio.com/";
+        private static string apiUrl = "https://random.52ecy.cn/randbg.php";
         
         public string GetSetu()
         {
