@@ -4,14 +4,14 @@ using alice_bot_cs.Tools;
 
 namespace alice_bot_cs.Extensions.Setu
 {
-    public class RandomSetuEcyExtension
+    public class RandomSetuToubExtension
     {
         /*
          * 下为色图数据储存位置
          */
         private string setuData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomSetu");
         private string setuFile;
-        private static string apiUrl = "https://random.52ecy.cn/randbg.php";
+        private static string apiUrl = "https://acg.toubiec.cn/random.php";
         
         public string GetSetu()
         {
