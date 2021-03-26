@@ -12,7 +12,7 @@ namespace alice_bot_cs.Modules
 {
     public partial class RandomTouhouPic : IGroupMessage
     {
-        private string path = "";
+        private string _path = "";
         
         public RandomTouhouPic(){}
         
@@ -33,13 +33,13 @@ namespace alice_bot_cs.Modules
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
                 RandomTouhouPicExtension rtpe = new RandomTouhouPicExtension();
-                path = rtpe.GetTouhouPic(); // 获取东方图片
+                _path = rtpe.GetTouhouPic(); // 获取东方图片
                 TraceLog.Log("", "东方图片插件:已获取到东方图片");
 
                 IMessageBase plainFetchedLine1 = new PlainMessage($"Alice寻找到了东方图片，正在尝试发送");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1);
 
-                await SendPictureAsync(session, path, e.Sender.Group.Id);
+                await SendPictureAsync(session, _path, e.Sender.Group.Id);
             }
             return false;
         }

@@ -18,23 +18,23 @@ namespace alice_bot_cs.Extensions.Setu
         /*
          * 下为色图API及基本信息变量生成
          */
-        int pid = 0;
-        int p = 0;
-        int uid = 0;
-        string title = "";
-        string author = "";
-        string originalUrl = "";
-        string largeUrl = "";
-        bool r18 = false;
-        int width = 0;
-        int height = 0;
-        List<string> tags;
+        int _pid = 0;
+        int _p = 0;
+        int _uid = 0;
+        string _title = "";
+        string _author = "";
+        string _originalUrl = "";
+        string _largeUrl = "";
+        bool _r18 = false;
+        int _width = 0;
+        int _height = 0;
+        List<string> _tags;
 
         /*
          * 下为色图数据储存位置
          */
-        string setuData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomSetu");
-        string setuFile;
+        string _setuData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomSetu/elbot");
+        string _setuFile;
 
         public RandomSetuElExtension() // 构造方法
         {
@@ -49,17 +49,17 @@ namespace alice_bot_cs.Extensions.Setu
 
         public string ReturnSetu() // 色图文件存放地址的获取，这是一个测试的方法，以后会被删除
         {
-            return setuFile;
+            return _setuFile;
         }
 
         public string GetSetuUrl() // url获取，这是一个测试的方法，以后会被删除
         {
-            return originalUrl;
+            return _originalUrl;
         }
 
         public int GetSetuPid() // pid，这是一个测试的方法，以后会被删除
         {
-            return pid;
+            return _pid;
         }
 
         private void ParseSetu(string setuJson)
@@ -67,28 +67,28 @@ namespace alice_bot_cs.Extensions.Setu
             ElbotSetuJson result = JsonConvert.DeserializeObject<ElbotSetuJson>(setuJson);
             if (result.ToString() != null)
             {
-                originalUrl = result.url;
-                pid = result.pid;
+                _originalUrl = result.url;
+                _pid = result.pid;
             }
         }
 
         public bool DownloadSetu()
         {
-            if (originalUrl.Contains("jpg"))
+            if (_originalUrl.Contains("jpg"))
             {
-                setuFile = Path.Combine(setuData, pid + ".jpg");
+                _setuFile = Path.Combine(_setuData, _pid + ".jpg");
             }
-            else if (originalUrl.Contains("png"))
+            else if (_originalUrl.Contains("png"))
             {
-                setuFile = Path.Combine(setuData, pid + ".png");
+                _setuFile = Path.Combine(_setuData, _pid + ".png");
             }
             else
             {
-                setuFile = Path.Combine(setuData, pid + ".jpg");
+                _setuFile = Path.Combine(_setuData, _pid + ".jpg");
             }
 
-            byte[] pic = HttpTool.GetBytesFromUrl(originalUrl);
-            HttpTool.WriteBytesToFile(setuFile, setuData, pic);
+            byte[] pic = HttpTool.GetBytesFromUrl(_originalUrl);
+            HttpTool.WriteBytesToFile(_setuFile, _setuData, pic);
             bool flag = false;
             return flag;
         }

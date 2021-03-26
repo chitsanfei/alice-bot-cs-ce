@@ -9,34 +9,34 @@ namespace alice_bot_cs.Extensions.Fun
 {
     public class RandomNBExtension
     {
-        private string str = "";
+        private string _str = "";
 
         public RandomNBExtension()
         {
         }
 
-        public string GetNBTalk()
+        public string GetNbTalk()
         {
-            str = HttpTool.Get("https://el-bot-api.vercel.app/api/words/niubi", "");
-            ParseNB(str, "某人");
-            return str;
+            _str = HttpTool.Get("https://el-bot-api.vercel.app/api/words/niubi", "");
+            ParseNb(_str, "某人");
+            return _str;
         }
 
-        public string GetNBTalk(string name)
+        public string GetNbTalk(string name)
         {
-            str = HttpTool.Get("https://el-bot-api.vercel.app/api/words/niubi", "");
-            ParseNB(str, name);
-            return str;
+            _str = HttpTool.Get("https://el-bot-api.vercel.app/api/words/niubi", "");
+            ParseNb(_str, name);
+            return _str;
         }
 
-        private void ParseNB(string json, string name)
+        private void ParseNb(string json, string name)
         {
             string talk = "";
             JArray ja = (JArray)JsonConvert.DeserializeObject(json);
             talk = ja[0].ToString();
             talk = Regex.Replace(talk, "\\${name}", name);
             TraceLog.Log("", "NB插件:有人请求了NB话");
-            this.str = talk;
+            this._str = talk;
         }
     }
 }

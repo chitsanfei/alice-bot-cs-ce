@@ -8,13 +8,13 @@ namespace alice_bot_cs.Extensions.Fun
 {
     public class RandomTouhouPicExtension
     {
-        private string picData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomTouhouPic");
-        private string picFile;
-        private static string apiUrl = "https://img.paulzzh.tech/touhou/random";
+        private string _picData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomTouhouPic");
+        private string _picFile;
+        private static string _apiUrl = "https://img.paulzzh.tech/touhou/random";
 
-        private string picUrl = "";
-        private string picAuthor = "";
-        private string PicTimestamp = "";
+        private string _picUrl = "";
+        private string _picAuthor = "";
+        private string _picTimestamp = "";
         
         public RandomTouhouPicExtension()
         { }
@@ -22,7 +22,7 @@ namespace alice_bot_cs.Extensions.Fun
         public string GetTouhouPic()
         {
             DownloadTouhouPic();
-            return picFile;
+            return _picFile;
         }
 
         private void ParseTouhouPic(string picJson)
@@ -30,29 +30,29 @@ namespace alice_bot_cs.Extensions.Fun
             TouhouPicJson result = JsonConvert.DeserializeObject<TouhouPicJson>(picJson);
             if(result.ToString() != null)
             {
-                picUrl = result.jpegurl;
-                picAuthor = result.author;
-                PicTimestamp = result.timestamp;
+                _picUrl = result.jpegurl;
+                _picAuthor = result.author;
+                _picTimestamp = result.timestamp;
             }
         }
         
         private bool DownloadTouhouPic()
         {
             string picName = RNGCryptoRandomService.GetRandomString(8);
-            picFile = Path.Combine(picData, picName + ".jpeg");
-            byte[] pic = HttpTool.GetBytesFromUrl(apiUrl);
-            HttpTool.WriteBytesToFile(this.picFile, this.picData, pic);
+            _picFile = Path.Combine(_picData, picName + ".jpeg");
+            byte[] pic = HttpTool.GetBytesFromUrl(_apiUrl);
+            HttpTool.WriteBytesToFile(this._picFile, this._picData, pic);
             return true;
         }
 
         public string GetAuthor()
         {
-            return picAuthor;
+            return _picAuthor;
         }
 
         public string GetTimestamp()
         {
-            return PicTimestamp;
+            return _picTimestamp;
         }
     }
 }

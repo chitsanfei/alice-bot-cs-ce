@@ -10,7 +10,7 @@ namespace alice_bot_cs.Modules
 {
     public partial class NBTalk : IGroupMessage 
     {
-        string talk = "";
+        string _talk = "";
 
         public NBTalk()
         {
@@ -25,8 +25,8 @@ namespace alice_bot_cs.Modules
             if (str.Equals(".nb"))
             {
                 RandomNBExtension rnbe = new RandomNBExtension();
-                talk = rnbe.GetNBTalk(e.Sender.Name);
-                IMessageBase plain = new PlainMessage(talk);
+                _talk = rnbe.GetNbTalk(e.Sender.Name);
+                IMessageBase plain = new PlainMessage(_talk);
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plain);
             }
             return false;

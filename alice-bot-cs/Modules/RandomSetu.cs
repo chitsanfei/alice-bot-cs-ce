@@ -12,9 +12,9 @@ namespace alice_bot_cs.Modules
 {
     public partial class RandomSetu: IGroupMessage
     {
-        string url;
-        string path;
-        int pid;
+        string _url;
+        string _path;
+        int _pid;
 
         public RandomSetu()
         {
@@ -52,21 +52,21 @@ namespace alice_bot_cs.Modules
 
                 RandomSetuLoliconExtension rsle = new RandomSetuLoliconExtension();
                 rsle.GetSetu(); // 调用获取色图方法
-                url = rsle.GetSetuUrl(); // 获得色图原url
-                pid = rsle.GetSetuPid(); // 获得色图pid
-                TraceLog.Log("", "色图插件:请求到内容：" + url + " pid为：" + pid);
+                _url = rsle.GetSetuUrl(); // 获得色图原url
+                _pid = rsle.GetSetuPid(); // 获得色图pid
+                TraceLog.Log("", "色图插件:请求到内容：" + _url + " pid为：" + _pid);
 
                 bool flag = rsle.DownloadSetu(); // 下载色图，必须在获取色图后
                 TraceLog.Log("", "色图插件:下载模块返回：" + flag);
-                path = rsle.ReturnSetu(); // 返回路径，必须在下载色图后
+                _path = rsle.ReturnSetu(); // 返回路径，必须在下载色图后
 
                 IMessageBase plainFetchedLine1 = new PlainMessage($"Alice已寻找到色图，正在调用发送方法\n");
-                IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}\n");
-                IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}\n");
+                IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{_url}\n");
+                IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{_pid}\n");
                 IMessageBase plainFetchedLine4 = new PlainMessage($"下载错误情况：{flag}");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1, plainFetchedLine2, plainFetchedLine3, plainFetchedLine4);
 
-                await SendPictureAsync(session, path, e.Sender.Group.Id);
+                await SendPictureAsync(session, _path, e.Sender.Group.Id);
             }
 
             /*
@@ -80,21 +80,21 @@ namespace alice_bot_cs.Modules
 
                 RandomSetuElExtension rsee = new RandomSetuElExtension();
                 rsee.GetSetu(); // 调用获取色图方法
-                url = rsee.GetSetuUrl(); // 获得色图原url
-                pid = rsee.GetSetuPid(); // 获得色图pid
-                TraceLog.Log("", "色图插件:请求到内容：" + url + " pid为：" + pid);
+                _url = rsee.GetSetuUrl(); // 获得色图原url
+                _pid = rsee.GetSetuPid(); // 获得色图pid
+                TraceLog.Log("", "色图插件:请求到内容：" + _url + " pid为：" + _pid);
 
                 bool flag = rsee.DownloadSetu(); // 下载色图，必须在获取色图后
                 TraceLog.Log("", "色图插件:下载模块返回：" + flag);
-                path = rsee.ReturnSetu(); // 返回路径，必须在下载色图后
+                _path = rsee.ReturnSetu(); // 返回路径，必须在下载色图后
 
                 IMessageBase plainFetchedLine1 = new PlainMessage($"Alice已寻找到色图，正在调用发送方法\n");
-                IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{url}\n");
-                IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{pid}\n");
+                IMessageBase plainFetchedLine2 = new PlainMessage($"色图地址：{_url}\n");
+                IMessageBase plainFetchedLine3 = new PlainMessage($"色图PID：{_pid}\n");
                 IMessageBase plainFetchedLine4 = new PlainMessage($"下载错误情况：{flag}");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1, plainFetchedLine2, plainFetchedLine3, plainFetchedLine4);
 
-                await SendPictureAsync(session, path, e.Sender.Group.Id);
+                await SendPictureAsync(session, _path, e.Sender.Group.Id);
             }
             
             /*
@@ -107,12 +107,12 @@ namespace alice_bot_cs.Modules
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
                 RandomSetuToubExtension toub = new RandomSetuToubExtension();
-                path = toub.GetSetu();
+                _path = toub.GetSetu();
 
                 IMessageBase plainFetchedLine1 = new PlainMessage($"Alice已寻找到色图，正在调用发送方法\n请注意，该API不支持详细信息解析");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1);
 
-                await SendPictureAsync(session, path, e.Sender.Group.Id);
+                await SendPictureAsync(session, _path, e.Sender.Group.Id);
             }
             
             /*
@@ -125,12 +125,12 @@ namespace alice_bot_cs.Modules
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainStart);
 
                 RandomSetuMtyExtension rsme = new RandomSetuMtyExtension();
-                path = rsme.GetSetu();
+                _path = rsme.GetSetu();
 
                 IMessageBase plainFetchedLine1 = new PlainMessage($"Alice已寻找到色图，正在调用发送方法\n请注意，该API不支持详细信息解析");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1);
 
-                await SendPictureAsync(session, path, e.Sender.Group.Id);
+                await SendPictureAsync(session, _path, e.Sender.Group.Id);
             }
             return false;
         }

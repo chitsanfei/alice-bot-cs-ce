@@ -4,7 +4,6 @@ using System.IO;
 using alice_bot_cs.Entity;
 using alice_bot_cs.Entity.Core;
 using alice_bot_cs.Entity.Modules;
-using alice_bot_cs.Entity.ModulesConfig;
 using alice_bot_cs.Extensions;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;

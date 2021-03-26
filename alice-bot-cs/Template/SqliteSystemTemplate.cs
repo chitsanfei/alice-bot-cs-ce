@@ -1,34 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.SQLite;
 using System.Data;
-using System.Xml;
-using System.Text.RegularExpressions;
-using System.IO;
+using System.Data.SQLite;
 
-namespace alice_bot_cs.Core
+namespace alice_bot_cs.Template
 {
-    public class SqliteSystem
+    public class SqliteSystemTemplate
     {
         private string _dbName = "";
-        private SQLiteConnection _SQLiteConn = null;     //连接对象
-        private SQLiteTransaction _SQLiteTrans = null;   //事务对象
-        private bool _IsRunTrans = false;        //事务运行标识
-        private string _SQLiteConnString = null; //连接字符串
-        private bool _AutoCommit = false; //事务自动提交标识
+        private SQLiteConnection _sqLiteConn = null;     //连接对象
+        private SQLiteTransaction _sqLiteTrans = null;   //事务对象
+        private bool _isRunTrans = false;        //事务运行标识
+        private string _sqLiteConnString = null; //连接字符串
+        private bool _autoCommit = false; //事务自动提交标识
  
-        public string SQLiteConnString
+        public string sqLiteConnString
         {
-            set { this._SQLiteConnString = value; }
-            get { return this._SQLiteConnString; }
+            set { this._sqLiteConnString = value; }
+            get { return this._sqLiteConnString; }
         }
 
-        public SqliteSystem(string dbPath)
+        public SqliteSystemTemplate(string dbPath)
         {
             this._dbName = dbPath;
-            this._SQLiteConnString = "Data Source=" + dbPath;
+            this._sqLiteConnString = "Data Source=" + dbPath;
         }
 
         /// <summary>
@@ -76,8 +70,8 @@ namespace alice_bot_cs.Core
         {
             try
             {
-                this._SQLiteConn = new SQLiteConnection(this._SQLiteConnString);
-                this._SQLiteConn.Open();
+                this._sqLiteConn = new SQLiteConnection(this._sqLiteConnString);
+                this._sqLiteConn.Open();
                 return true;
             }
             catch (Exception ex)
@@ -96,10 +90,10 @@ namespace alice_bot_cs.Core
             try
             {
                 string sqliteConnString = "Data Source=" + dbPath;
-                this._SQLiteConn = new SQLiteConnection(sqliteConnString);
+                this._sqLiteConn = new SQLiteConnection(sqliteConnString);
                 this._dbName = dbPath;
-                this._SQLiteConnString = sqliteConnString;
-                this._SQLiteConn.Open();
+                this._sqLiteConnString = sqliteConnString;
+                this._sqLiteConn.Open();
                 return true;
             }
             catch (Exception ex)
@@ -113,14 +107,14 @@ namespace alice_bot_cs.Core
         /// </summary>
         public void CloseDb()
         {
-            if (this._SQLiteConn != null && this._SQLiteConn.State != ConnectionState.Closed)
+            if (this._sqLiteConn != null && this._sqLiteConn.State != ConnectionState.Closed)
             {
-                if (this._IsRunTrans && this._AutoCommit)
+                if (this._isRunTrans && this._autoCommit)
                 {
                     this.Commit();
                 }
-                this._SQLiteConn.Close();
-                this._SQLiteConn = null;
+                this._sqLiteConn.Close();
+                this._sqLiteConn = null;
             }
         }
         
@@ -129,8 +123,8 @@ namespace alice_bot_cs.Core
         /// </summary>
         public void BeginTransaction()
         {
-            this._SQLiteConn.BeginTransaction();
-            this._IsRunTrans = true;
+            this._sqLiteConn.BeginTransaction();
+            this._isRunTrans = true;
         }
         
         /// <summary>
@@ -139,8 +133,8 @@ namespace alice_bot_cs.Core
         /// <param name="isoLevel">事务锁级别</param>
         public void BeginTransaction(IsolationLevel isoLevel)
         {
-            this._SQLiteConn.BeginTransaction(isoLevel);
-            this._IsRunTrans = true;
+            this._sqLiteConn.BeginTransaction(isoLevel);
+            this._isRunTrans = true;
         }
         
         /// <summary>
@@ -148,10 +142,10 @@ namespace alice_bot_cs.Core
         /// </summary>
         public void Commit()
         {
-            if (this._IsRunTrans)
+            if (this._isRunTrans)
             {
-                    this._SQLiteTrans.Commit();
-                    this._IsRunTrans = false;
+                    this._sqLiteTrans.Commit();
+                    this._isRunTrans = false;
             }
         }
     }

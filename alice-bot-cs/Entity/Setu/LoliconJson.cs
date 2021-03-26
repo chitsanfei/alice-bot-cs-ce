@@ -7,7 +7,7 @@ namespace alice_bot_cs.Entity.Setu
         public int code { get; set; }
         public string msg { get; set; }
         public int quota { get; set; }
-        public int quota_min_ttl { get; set; }
+        public int quotaMinTtl { get; set; }
         public int count { get; set; }
         public List<SetuImageJson> data { get; set; }
     }

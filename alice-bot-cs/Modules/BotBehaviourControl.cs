@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using alice_bot_cs.Core;
 using alice_bot_cs.Entity;
 using alice_bot_cs.Entity.Modules;
-using alice_bot_cs.Entity.ModulesConfig;
 using Mirai_CSharp;
 using Mirai_CSharp.Models;
 using Mirai_CSharp.Plugin.Interfaces;
@@ -19,10 +18,10 @@ namespace alice_bot_cs.Modules
         /// <summary>
         /// 机器人行为控制插件
         /// </summary>
-        private string help;
-        private string list;
-        private string info;
-        private long botqq;
+        private string _help;
+        private string _list;
+        private string _info;
+        private long _botqq;
 
         public BotBehaviourControl() // 无参数构造方法，为方便调试，未设置private
         {
@@ -30,7 +29,7 @@ namespace alice_bot_cs.Modules
 
         public BotBehaviourControl(long botqq) // 有参数构造方法
         {
-            this.botqq = botqq;
+            this._botqq = botqq;
         }
         /*
          * 下列是对机器人的加群和添加好友的行为控制功能实现
@@ -117,24 +116,24 @@ namespace alice_bot_cs.Modules
             string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain); // 取消息
             string[] strArray = str.Split(new char[2] { '[', ']' }); // 分割Mirai码部分
             str = strArray[2];
-            if(e.Sender.Id != botqq)
+            if(e.Sender.Id != _botqq)
             {
                 if (str.Equals(".help"))
                 {
                     BotBehaviourConfigMenuTrans();
-                    IMessageBase plainMenuHelp = new PlainMessage(this.help);
+                    IMessageBase plainMenuHelp = new PlainMessage(this._help);
                     await session.SendGroupMessageAsync(e.Sender.Group.Id, plainMenuHelp);
                 }
                 if (str.Equals(".list"))
                 {
                     BotBehaviourConfigMenuTrans();
-                    IMessageBase plainMenuList = new PlainMessage(this.list);
+                    IMessageBase plainMenuList = new PlainMessage(this._list);
                     await session.SendGroupMessageAsync(e.Sender.Group.Id, plainMenuList);
                 }
                 if (str.Equals(".info"))
                 {
                     BotBehaviourConfigMenuTrans();
-                    IMessageBase plainMenuInfo = new PlainMessage(this.info);
+                    IMessageBase plainMenuInfo = new PlainMessage(this._info);
                     await session.SendGroupMessageAsync(e.Sender.Group.Id, plainMenuInfo);
                 }
             }
@@ -149,9 +148,9 @@ namespace alice_bot_cs.Modules
                 .Build();
             string s = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"/config/BotBehaviourConfig.yaml");
             var c = deserializer.Deserialize<BotBehaviourConfig>(s);
-            this.help = c.menu.help;
-            this.info = c.menu.info;
-            this.list = c.menu.list;
+            this._help = c.menu.help;
+            this._info = c.menu.info;
+            this._list = c.menu.list;
         }
     }
 }

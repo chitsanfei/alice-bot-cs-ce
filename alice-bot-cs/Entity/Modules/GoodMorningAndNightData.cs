@@ -1,4 +1,4 @@
-﻿namespace alice_bot_cs.Entity.ModulesConfig
+﻿namespace alice_bot_cs.Entity.Modules
 {
     public class GoodMorningAndNightData
     {

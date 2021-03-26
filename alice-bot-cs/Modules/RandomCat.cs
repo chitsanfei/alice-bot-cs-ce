@@ -12,8 +12,8 @@ namespace alice_bot_cs.Modules
 {
     public partial class RandomCat : IGroupMessage
     {
-        string url;
-        string path;
+        string _url;
+        string _path;
 
         public RandomCat()
         {
@@ -33,14 +33,14 @@ namespace alice_bot_cs.Modules
 
                 RandomCatExtension rc = new RandomCatExtension();
                 rc.GetCat();
-                path = rc.GetCatPath();
-                url = rc.GetCatURL();
+                _path = rc.GetCatPath();
+                _url = rc.GetCatUrl();
 
                 IMessageBase plainFetchedLine1 = new PlainMessage($"已解析到猫猫哦\n");
-                IMessageBase plainFetchedLine2 = new PlainMessage($"猫猫地址：{url}\n正在调用发送方法发送猫猫");
+                IMessageBase plainFetchedLine2 = new PlainMessage($"猫猫地址：{_url}\n正在调用发送方法发送猫猫");
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, plainFetchedLine1, plainFetchedLine2);
 
-                await SendPictureAsync(session, path, e.Sender.Group.Id);
+                await SendPictureAsync(session, _path, e.Sender.Group.Id);
             }
             return false;
         }
