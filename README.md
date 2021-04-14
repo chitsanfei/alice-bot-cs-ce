@@ -15,14 +15,18 @@ A simple QQ bot running with MiraiHttp and MiraiCSharp & 一个基于MiraiHttp�
 - `Program.cs`：程序入口点
 > 请注意设置.gitignore来排除.vs与.git参数文件以及/obj与/bin等输出文件夹
 
+## 分支信息
+| 分支名 | 功能 |
+| ---- | ---- |
+| acid | 主分支 |
+| atom | 快速构建的测试分支 |
+| binary | 用于稳定化建设的分支 | 
+| dream | 用于多平台编译测试的工程分支 |
+
 ## 核心功能
 | 功能名 | 命令 | 作用 |
 | ---- | ---- | ---- |
-| 早晚安 | 早安、晚安 | 给你一句早晚安的问候 |
-| 随机色图 | .setu lolicon或.setu elbot或随机色图 | 发送一张色图（API来自elbot示例及lolicon） |
-| 随机NB话 | .nb | 发送一句NB话（API来自elbot） |
-| 事件提醒 | | 提醒群内发生的事件 |
-| 随机猫猫 | .cat或随机猫猫 | 发送一张随机猫猫图 |
+|  | .help | 查看机器人详细功能 |
 
 ## 关联项目
 - [Mirai](https://github.com/mamoe/mirai)
@@ -35,4 +39,4 @@ A simple QQ bot running with MiraiHttp and MiraiCSharp & 一个基于MiraiHttp�
 ## 注意事项
 - 一切仅供交流学习
 - 请使用c# >= 8.0建构项目
-- 请使用`dev`分支进行开发，`master`为稳定运行分支，请勿直接推送`master`分支commit
+- 请使用`atom`分支进行开发，`acid`为稳定运行分支，请勿直接推送`acid`分支commit

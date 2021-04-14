@@ -31,9 +31,13 @@ namespace alice_bot_cs.Modules
         {
             this._botqq = botqq;
         }
-        /*
-         * 下列是对机器人的加群和添加好友的行为控制功能实现
-         */
+        
+        /// <summary>
+        /// 对机器人的受邀加入群的处理方法
+        /// </summary>
+        /// <param name="session">http</param>
+        /// <param name="e">受邀入群事件</param>
+        /// <returns></returns>
         public async Task<bool> BotInvitedJoinGroup(MiraiHttpSession session, IBotInvitedJoinGroupEventArgs e)
         {
             bool flag = GroupRequestChecker();
@@ -48,7 +52,13 @@ namespace alice_bot_cs.Modules
             TraceLog.Log("", "行为控制:来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了拉群请求给机器人，处理情况：" + flag);
             return false;
         }
-
+        
+        /// <summary>
+        /// 对机器人受到好友申请的处理方法
+        /// </summary>
+        /// <param name="session">http</param>
+        /// <param name="e">受到好友申请事件</param>
+        /// <returns></returns>
         public async Task<bool> NewFriendApply(MiraiHttpSession session, INewFriendApplyEventArgs e)
         {
             bool flag = FriendRequestChecker();
@@ -63,7 +73,11 @@ namespace alice_bot_cs.Modules
             TraceLog.Log("", "行为控制:来自群 " + e.FromGroup + " 的 " + e.NickName + "，QQ为 " + e.FromQQ + "，发送了添加好友请求给机器人，处理情况：" + flag);
             return false;
         }
-
+        
+        /// <summary>
+        /// 检查组的行为参数信息
+        /// </summary>
+        /// <returns>允许情况</returns>
         private bool GroupRequestChecker()
         {
             TraceLog.Log("", "行为控制:收到组邀请检查请求");
@@ -84,7 +98,11 @@ namespace alice_bot_cs.Modules
                 return false;
             }
         }
-
+        
+        /// <summary>
+        /// 检查好友允许行为参数信息
+        /// </summary>
+        /// <returns>允许情况</returns>
         private bool FriendRequestChecker()
         {
             TraceLog.Log("", "行为控制:收到好友邀请检查请求");
@@ -106,10 +124,18 @@ namespace alice_bot_cs.Modules
                 return false;
             }
         }
+        
         /*
          * 下列是对机器人的指令菜单的控制
          * todo:需要改进，可能需要使用图片发送指令，或对机器人进行排除 @author MashiroSA 
          */
+        
+        /// <summary>
+        /// 指令菜单控制
+        /// </summary>
+        /// <param name="session">http</param>
+        /// <param name="e">群消息事件</param>
+        /// <returns></returns>
         public async Task<bool> GroupMessage(MiraiHttpSession session, IGroupMessageEventArgs e)
         {
             
@@ -140,6 +166,9 @@ namespace alice_bot_cs.Modules
             return false; 
         }
 
+        /// <summary>
+        /// 行为菜单解析
+        /// </summary>
         private void BotBehaviourConfigMenuTrans()
         {
             TraceLog.Log("", "行为控制:菜单检查事件被触发");

@@ -12,13 +12,20 @@ namespace alice_bot_cs.Core
 {
     public class Init
     {
+        /// <summary>
+        /// 执行初始化方法
+        /// </summary>
         public Init()
         {
             InitDirectory();
             InitCoreConfig();
             InitBotBehaviourConfig();
         }
-
+        
+        ///<summary>
+        /// 初始化机器人所需文件夹信息
+        ///</summary>
+        /// <returns>执行情况</returns>
         private int InitDirectory() // 初始化文件夹
         {
             string currPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -36,6 +43,10 @@ namespace alice_bot_cs.Core
             return 0;
         }
 
+        /// <summary>
+        /// 初始化核心配置文件
+        /// </summary>
+        /// <returns>执行情况</returns>
         private int InitCoreConfig() // 初始化核心配置文件
         {
             string configPath = AppDomain.CurrentDomain.BaseDirectory + @"/config/";
@@ -59,10 +70,15 @@ namespace alice_bot_cs.Core
                 asw.Write(yaml);
                 asw.Close();
                 TraceLog.Log("", "初始化:InitCoreConfig:执行成功");
+                
             }
             return 0;
         }
-
+        
+        /// <summary>
+        /// 初始化机器人所需行为基本参数信息，插件类为BotBehaviourControl
+        /// </summary>
+        /// <returns>执行情况</returns>
         private int InitBotBehaviourConfig()
         {
             string configPath = AppDomain.CurrentDomain.BaseDirectory + @"/config/";
@@ -72,7 +88,7 @@ namespace alice_bot_cs.Core
                 FileStream fs = new FileStream(configFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 StreamWriter sw = new StreamWriter(fs);
                 sw.Close();
-                var bbc = new BotBehaviourConfig
+                var botBehaviourConfig = new BotBehaviourConfig
                 {
                     request = new Request
                     {
@@ -87,7 +103,7 @@ namespace alice_bot_cs.Core
                     }
                 };
                 var serializer = new SerializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).Build();
-                var yaml = serializer.Serialize(bbc);
+                var yaml = serializer.Serialize(botBehaviourConfig);
                 FileStream afs = new FileStream(configFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 StreamWriter asw = new StreamWriter(afs);
                 asw.Write(yaml);
