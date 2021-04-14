@@ -1,22 +1,23 @@
 using System;
 using System.IO;
 using System.Threading;
+using alice_bot_cs.Core;
 using alice_bot_cs.Tools;
 
-namespace alice_bot_cs.Extensions
+namespace alice_bot_cs.Extensions.Osu
 {
     public class OsuOussigLoliconExtension
     {
-        private string username = "";
-        private string dataPath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/OsusigPic");
-        private string dataFile = "";
+        private string _username = "";
+        private string _dataPath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/OsusigPic");
+        private string _dataFile = "";
 
         public string GetOsuSig(string username)
         {
-            this.username = username;
+            this._username = username;
             bool flag = DownloadOusSigPic();
-            LogExtension.Log("", "OSUSIG:调用下载返回了:" + flag); 
-            return dataFile;
+            TraceLog.Log("", "OSUSIG:调用下载返回了:" + flag); 
+            return _dataFile;
         }
 
         private bool DownloadOusSigPic()
@@ -46,11 +47,11 @@ namespace alice_bot_cs.Extensions
                     break;
             }
 
-            LogExtension.Log("", $"OSUSIG:将调用OSU个人资料，{username}");
-            string api = $"https://osusig.lolicon.app/sig.php?colour={color}&uname={username}&pp=1&countryrank&removeavmargin&rankedscore&xpbar";
-            dataFile = Path.Combine(dataPath, username + ".png");
+            TraceLog.Log("", $"OSUSIG:将调用OSU个人资料，{_username}");
+            string api = $"https://osusig.lolicon.app/sig.php?colour={color}&uname={_username}&pp=1&countryrank&removeavmargin&rankedscore&xpbar";
+            _dataFile = Path.Combine(_dataPath, _username + ".png");
             byte[] pic = HttpTool.GetBytesFromUrl(api);
-            HttpTool.WriteBytesToFile(dataFile, dataPath, pic);
+            HttpTool.WriteBytesToFile(_dataFile, _dataPath, pic);
             return true;
         }
     }

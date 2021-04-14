@@ -18,8 +18,11 @@ namespace alice_bot_cs.Modules
     {
         public async Task<bool> GroupMessage(MiraiHttpSession session, IGroupMessageEventArgs e) // 群消息处理方法
         {
-            string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain);
-            if (str.Contains("早安"))
+            string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain); // 取消息
+            string[] strArray = str.Split(new char[2] { '[', ']' }); // 分割Mirai码部分
+            str = strArray[2];
+            
+            if (str.Equals("早安"))
             {
                 Random ran = new Random();
                 int n = ran.Next(1, 100);
@@ -28,7 +31,7 @@ namespace alice_bot_cs.Modules
                 await session.SendGroupMessageAsync(e.Sender.Group.Id, builder);
                 return false;
             }
-            if (str.Contains("晚安"))
+            if (str.Equals("晚安"))
             {
                 var time = DateTime.Now.ToLocalTime().ToString();
                 IMessageBuilder builder = new MessageBuilder();

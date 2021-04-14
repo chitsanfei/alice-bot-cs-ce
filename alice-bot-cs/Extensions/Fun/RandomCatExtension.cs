@@ -1,16 +1,17 @@
 ﻿using System;
 using System.IO;
 using alice_bot_cs.Entity;
+using alice_bot_cs.Entity.Fun;
 using alice_bot_cs.Tools;
 using Newtonsoft.Json;
 
-namespace alice_bot_cs.Extensions
+namespace alice_bot_cs.Extensions.Fun
 {
     public class RandomCatExtension
     {
-        private string URL;
-        private string catData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomCat");
-        private string catFile;
+        private string _url;
+        private string _catData = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/RandomCat");
+        private string _catFile;
 
         public RandomCatExtension()
         {
@@ -29,28 +30,28 @@ namespace alice_bot_cs.Extensions
             int id = ran.Next(1, 10000);
             string path = null;
 
-            if (URL.Contains("jpg"))
+            if (_url.Contains("jpg"))
             {
-                catFile = Path.Combine(catData, id + ".jpg");
+                _catFile = Path.Combine(_catData, id + ".jpg");
             }
-            else if (URL.Contains("png"))
+            else if (_url.Contains("png"))
             {
-                catFile = Path.Combine(catData, id + ".png");
+                _catFile = Path.Combine(_catData, id + ".png");
             }
             else
             {
-                catFile = Path.Combine(catData, id + ".jpg");
+                _catFile = Path.Combine(_catData, id + ".jpg");
             }
 
-            byte[] pic = HttpTool.GetBytesFromUrl(this.URL);
-            HttpTool.WriteBytesToFile(catFile, catData, pic);
-            path = catFile;
+            byte[] pic = HttpTool.GetBytesFromUrl(this._url);
+            HttpTool.WriteBytesToFile(_catFile, _catData, pic);
+            path = _catFile;
             return path;
         }
 
-        public string GetCatURL()
+        public string GetCatUrl()
         {
-            return URL;
+            return _url;
         }
 
         private void ParseCat(string catJson)
@@ -58,7 +59,7 @@ namespace alice_bot_cs.Extensions
             CatJson result = JsonConvert.DeserializeObject<CatJson>(catJson);
             if (result.file.Length > 0)
             {
-                URL = result.file;
+                _url = result.file;
             }
         }
     }

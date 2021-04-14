@@ -5,7 +5,7 @@ using System.Text;
 
 namespace alice_bot_cs.Tools
 {
-    public class HttpTool
+    public sealed class HttpTool
     {
         public HttpTool()
         {
@@ -16,6 +16,7 @@ namespace alice_bot_cs.Tools
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url + (postDataStr == "" ? "" : "?") + postDataStr);
             request.Method = "GET";
             request.ContentType = "text/html;charset=UTF-8";
+            request.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)";
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream myResponseStream = response.GetResponseStream();

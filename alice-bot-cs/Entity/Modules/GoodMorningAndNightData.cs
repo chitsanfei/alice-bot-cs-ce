@@ -1,5 +1,4 @@
-﻿using System;
-namespace alice_bot_cs.Entity
+﻿namespace alice_bot_cs.Entity.Modules
 {
     public class GoodMorningAndNightData
     {

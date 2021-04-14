@@ -1,5 +1,6 @@
 alice-bot-cs/bin/
 alice-bot-cs/obj/
+.vscode
 .vs/
 .git/
 .idea/
