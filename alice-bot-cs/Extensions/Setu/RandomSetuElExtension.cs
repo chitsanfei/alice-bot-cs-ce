@@ -40,28 +40,48 @@ namespace alice_bot_cs.Extensions.Setu
         {
         }
 
+        /// <summary>
+        /// 获取色图，并调用色图处理
+        /// </summary>
+        /// <returns>调用情况</returns>
         public int GetSetu() // 色图获取方法
         {
             string setuJson = HttpTool.Get($"https://el-bot-api.vercel.app/api/setu", "");
-            ParseSetu(setuJson); // 处理由lolicon返回的json信息，并进行解析
+            ParseSetu(setuJson); // 处理由elbot返回的json信息，并进行解析
             return 0;
         }
 
+        /// <summary>
+        /// 返回色图的存放地址
+        /// </summary>
+        /// <returns>存放地址</returns>
         public string ReturnSetu() // 色图文件存放地址的获取，这是一个测试的方法，以后会被删除
         {
             return _setuFile;
         }
 
+        /// <summary>
+        /// 获得图片的url
+        /// </summary>
+        /// <returns>解析后图片的url</returns>
         public string GetSetuUrl() // url获取，这是一个测试的方法，以后会被删除
         {
             return _originalUrl;
         }
 
+        /// <summary>
+        /// 获得图片的pid
+        /// </summary>
+        /// <returns>解析后图片的pid</returns>
         public int GetSetuPid() // pid，这是一个测试的方法，以后会被删除
         {
             return _pid;
         }
 
+        /// <summary>
+        /// 处理色图
+        /// </summary>
+        /// <param name="setuJson">需要反序列化的json信息</param>
         private void ParseSetu(string setuJson)
         {
             ElbotSetuJson result = JsonConvert.DeserializeObject<ElbotSetuJson>(setuJson);
@@ -72,6 +92,10 @@ namespace alice_bot_cs.Extensions.Setu
             }
         }
 
+        /// <summary>
+        /// 下载色图
+        /// </summary>
+        /// <returns>返回下载情况</returns>
         public bool DownloadSetu()
         {
             if (_originalUrl.Contains("jpg"))

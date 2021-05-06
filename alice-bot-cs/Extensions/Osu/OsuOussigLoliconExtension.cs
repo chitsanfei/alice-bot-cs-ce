@@ -12,15 +12,24 @@ namespace alice_bot_cs.Extensions.Osu
         private string _dataPath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data/OsusigPic");
         private string _dataFile = "";
 
+        /// <summary>
+        /// 调用OsuSig
+        /// </summary>
+        /// <param name="username">需要获取的osu用户名</param>
+        /// <returns>图片地址</returns>
         public string GetOsuSig(string username)
         {
             this._username = username;
-            bool flag = DownloadOusSigPic();
+            bool flag = DownloadOsuSigPic();
             TraceLog.Log("", "OSUSIG:调用下载返回了:" + flag); 
             return _dataFile;
         }
 
-        private bool DownloadOusSigPic()
+        /// <summary>
+        /// 下载OsuSig图片
+        /// </summary>
+        /// <returns>调用情况</returns>
+        private bool DownloadOsuSigPic()
         {
             string color = "black";
             Random rd = new Random();

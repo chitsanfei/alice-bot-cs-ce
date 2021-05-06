@@ -13,6 +13,10 @@ namespace alice_bot_cs.Extensions.Setu
         private string _setuFile;
         private static string _apiUrl = "https://acg.toubiec.cn/random.php";
         
+        /// <summary>
+        /// 获取色图并返回图片临时存放位置
+        /// </summary>
+        /// <returns>图片临时存放位置</returns>
         public string GetSetu()
         {
             DownloadSetu();

@@ -23,6 +23,10 @@ namespace alice_bot_cs.Extensions.Setu
         private string _imgWidth = "";
         private string _imgHeight = "";
         
+        /// <summary>
+        /// 获得色图
+        /// </summary>
+        /// <returns>色图地址</returns>
         public string GetSetu()
         {
             string setuJson = HttpTool.Get(_apiUrl,"");

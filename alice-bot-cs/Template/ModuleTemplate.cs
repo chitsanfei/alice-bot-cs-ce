@@ -13,6 +13,8 @@ namespace alice_bot_cs.Template
      */
     public partial class ModuleTemplate : IGroupMessage // 填写接口
     {
+        public readonly string Name = "ExamplePlugins";
+        public readonly string Version = "0.0.1";
         public ModuleTemplate() // 构造方法，可以保持空
         {
         }

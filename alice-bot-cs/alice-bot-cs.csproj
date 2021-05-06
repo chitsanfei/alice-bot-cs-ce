@@ -17,6 +17,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Modules\" />
     <Folder Include="Core\" />
+    <Folder Include="Plugins" />
     <Folder Include="Tools\" />
     <Folder Include="Entity\" />
   </ItemGroup>

@@ -11,7 +11,7 @@ namespace alice_bot_cs.Extensions.Setu
         /*
          * 下为色图API及基本信息变量生成
          */
-        string _apikey = "365007185fc06c84ac62e6";
+        string _apikey = "365007185fc06c84ac62e6"; // 我忘记这个api是哪里找到的了，todo:建议修改api @author MashiroSA
         int _pid = 0;
         int _p = 0;
         int _uid = 0;
@@ -38,6 +38,10 @@ namespace alice_bot_cs.Extensions.Setu
         {
         }
 
+        /// <summary>
+        /// 获取色图
+        /// </summary>
+        /// <returns>执行结果</returns>
         public int GetSetu() // 色图获取方法
         {
             string setuJson = HttpTool.Get($"http://api.lolicon.app/setu?apikey={_apikey}&r18=0","");
@@ -45,21 +49,37 @@ namespace alice_bot_cs.Extensions.Setu
             return 0;
         }
 
+        /// <summary>
+        /// 返回色图存放地址
+        /// </summary>
+        /// <returns>色图存放地址</returns>
         public string ReturnSetu() // 色图文件存放地址的获取，这是一个测试的方法，以后会被删除
         {
             return _setuFile;
         }
 
+        /// <summary>
+        /// 获得色图的url
+        /// </summary>
+        /// <returns>色图的url</returns>
         public string GetSetuUrl() // url获取，这是一个测试的方法，以后会被删除
         {
             return _originalUrl;
         }
 
+        /// <summary>
+        /// 获得色图的pid
+        /// </summary>
+        /// <returns>色图的pid</returns>
         public int GetSetuPid() // pid，这是一个测试的方法，以后会被删除
         {
             return _pid;
         }
 
+        /// <summary>
+        /// 反序列化色图信息
+        /// </summary>
+        /// <param name="setuJson">待处理的信息</param>
         private void ParseSetu(string setuJson)
         {
             LoliconJson result = JsonConvert.DeserializeObject<LoliconJson>(setuJson);
@@ -70,6 +90,10 @@ namespace alice_bot_cs.Extensions.Setu
             }
         }
 
+        /// <summary>
+        /// 下载色图
+        /// </summary>
+        /// <returns>下载色图的情况</returns>
         public bool DownloadSetu()
         {
             if (_originalUrl.Contains("jpg"))
