@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using alice_bot_cs.Entity;
 using alice_bot_cs.Entity.Core;
 using alice_bot_cs.Entity.Modules;
 using alice_bot_cs.Extensions;
+using MySql.Data.MySqlClient;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -20,6 +22,7 @@ namespace alice_bot_cs.Core
             InitDirectory();
             InitCoreConfig();
             InitBotBehaviourConfig();
+            InitDB();
         }
         
         ///<summary>
@@ -110,6 +113,15 @@ namespace alice_bot_cs.Core
                 asw.Close();
                 TraceLog.Log("", "初始化:InitBotBehaviourConfig:执行成功");
             }
+            return 0;
+        }
+        
+        /// <summary>
+        /// 检查机器人数据库情况并初始化机器人数据库信息
+        /// </summary>
+        /// <returns></returns>
+        private int InitDB()
+        {
             return 0;
         }
     }
