@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
 using System.IO;
 using alice_bot_cs.Entity;
 using alice_bot_cs.Entity.Core;
@@ -122,6 +123,26 @@ namespace alice_bot_cs.Core
         /// <returns></returns>
         private int InitDB()
         {
+            string dbPath = AppDomain.CurrentDomain.BaseDirectory + @"/db/";
+            string dbFile = dbPath + @"alice.db";
+
+            if (false == System.IO.File.Exists(dbFile)) // 初始化鉴别
+            {
+                SQLiteConnection.CreateFile(dbPath);
+                
+                SQLiteConnection sqliteConn = new SQLiteConnection("data source=" + dbFile);
+                if (sqliteConn.State != System.Data.ConnectionState.Open)
+                {
+                    sqliteConn.Open();
+                    SQLiteCommand cmd = new SQLiteCommand();
+                    cmd.Connection = sqliteConn;
+                    cmd.CommandText = "CREATE TABLE " + "Basic" +
+                                      "(ID int, Item varchar, Content varchar)";
+                    cmd.ExecuteNonQuery();
+                }
+
+                sqliteConn.Close();
+            }
             return 0;
         }
     }
