@@ -20,6 +20,7 @@ namespace alice_bot_cs.Core
             InitDirectory();
             InitCoreConfig();
             InitBotBehaviourConfig();
+            InitBotDatabase();
         }
         
         ///<summary>
@@ -109,6 +110,24 @@ namespace alice_bot_cs.Core
                 asw.Write(yaml);
                 asw.Close();
                 TraceLog.Log("", "初始化:InitBotBehaviourConfig:执行成功");
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Init bot database using SQLite
+        /// </summary>
+        /// <returns>execution</returns>
+        public int InitBotDatabase()
+        {
+            string configPath = AppDomain.CurrentDomain.BaseDirectory + @"/database/";
+            string configFilePath = configPath + @"Bot.db";
+            if (false == System.IO.File.Exists(configFilePath))
+            {
+                FileStream fs = new FileStream(configFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Close();
+                TraceLog.Log("", "初始化:InitBotDatabase:执行成功");
             }
             return 0;
         }
