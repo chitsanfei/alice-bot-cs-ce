@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using alice_bot_cs.Core;
-using alice_bot_cs.Entity.Modules;
+using alice_bot_cs.Entity.Plugins;
 using Mirai_CSharp;
 using Mirai_CSharp.Models;
 using Mirai_CSharp.Plugin.Interfaces;

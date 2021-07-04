@@ -2,7 +2,7 @@
 using System.Data.SQLite;
 using System.IO;
 using alice_bot_cs.Entity.Core;
-using alice_bot_cs.Entity.Modules;
+using alice_bot_cs.Entity.Plugins;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 

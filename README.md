@@ -12,7 +12,7 @@ A simple QQ bot running with MiraiHttp and MiraiCSharp & 一个基于MiraiHttp�
 - `Core`：核心功能类
 - `Entity`：实体类，用于实例化参数
 - `Extensions`：与Modules耦合的外部功能
-- `Modules`：机器人插件
+- `Plugins`：机器人插件
 - `Tools`：机器人可能会使用到的非核心的外部功能
 - `Program.cs`：程序入口点
 > 请注意设置.gitignore来排除.vs与.git参数文件以及/obj与/bin等输出文件夹
@@ -20,10 +20,9 @@ A simple QQ bot running with MiraiHttp and MiraiCSharp & 一个基于MiraiHttp�
 ## 分支信息
 | 分支名 | 功能 |
 | ---- | ---- |
-| acid | 主分支 |
-| atom | 快速构建的测试分支 |
-| binary | 用于稳定化建设的分支 | 
-| dream | 用于多平台编译测试的工程分支 |
+| master | 主分支 |
+| develop | 开发分支 |
+| debug | 测试分支，用以测试开发分支将要加入的代码 | 
 
 ## 核心功能
 | 功能名 | 命令 | 作用 |
@@ -41,4 +40,4 @@ A simple QQ bot running with MiraiHttp and MiraiCSharp & 一个基于MiraiHttp�
 ## 注意事项
 - 一切仅供交流学习
 - 请使用c# >= 8.0建构项目
-- 请使用`atom`分支进行开发，`acid`为稳定运行分支，请勿直接推送`acid`分支commit
+- 请使用`develop`分支进行开发，`master`为稳定运行分支，请勿直接推送`master`分支commit
