@@ -117,7 +117,7 @@ namespace alice_bot_cs.Core
             }
             return 0;
         }
-
+      
         /// <summary>
         /// Init bot database using SQLite
         /// </summary>
