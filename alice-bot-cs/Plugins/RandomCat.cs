@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using alice_bot_cs.Core;
-using alice_bot_cs.Extensions;
 using alice_bot_cs.Extensions.Fun;
 using Mirai_CSharp;
 using Mirai_CSharp.Models;
 using Mirai_CSharp.Plugin.Interfaces;
 
-namespace alice_bot_cs.Modules
+namespace alice_bot_cs.Plugins
 {
     public partial class RandomCat : IGroupMessage
     {
