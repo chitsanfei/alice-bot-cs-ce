@@ -1,4 +1,4 @@
-﻿namespace alice_bot_cs.Entity.Modules
+﻿namespace alice_bot_cs.Entity.Plugins
 {
     public class BotBehaviourConfig // 这是对机器人行为控制插件的实体类，用以yaml序列化和反序列化
     {
