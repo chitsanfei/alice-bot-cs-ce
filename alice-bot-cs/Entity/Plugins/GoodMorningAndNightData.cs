@@ -1,4 +1,4 @@
-﻿namespace alice_bot_cs.Entity.Modules
+﻿namespace alice_bot_cs.Entity.Plugins
 {
     public class GoodMorningAndNightData
     {
