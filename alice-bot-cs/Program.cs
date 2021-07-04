@@ -1,7 +1,7 @@
 ﻿using alice_bot_cs.Core; // 核心
 using alice_bot_cs.Entity; // 实体类
 using alice_bot_cs.Extensions; // 扩展
-using alice_bot_cs.Modules; // 插件
+// 插件
 using Mirai_CSharp;
 using Mirai_CSharp.Models;
 using System;
@@ -9,6 +9,7 @@ using System.Data.SQLite;
 using System.IO;
 using System.Threading.Tasks;
 using alice_bot_cs.Entity.Core;
+using alice_bot_cs.Plugins;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 

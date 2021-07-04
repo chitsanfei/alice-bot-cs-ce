@@ -1,11 +1,8 @@
+using System;
+using System.Threading;
+
 namespace alice_bot_cs.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-
     namespace alice_bot_cs.Core
     {
         public delegate void DoHandler();

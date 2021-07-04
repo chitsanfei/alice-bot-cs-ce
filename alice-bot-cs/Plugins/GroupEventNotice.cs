@@ -1,15 +1,10 @@
-﻿using alice_bot_cs.Extensions;
+﻿using System;
+using System.Threading.Tasks;
 using Mirai_CSharp;
-using Mirai_CSharp.Extensions;
 using Mirai_CSharp.Models;
 using Mirai_CSharp.Plugin.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace alice_bot_cs.Modules
+namespace alice_bot_cs.Plugins
 {
     public partial class GroupEventNotice : IGroupMemberJoined, IGroupMemberKicked, IGroupMemberPositiveLeave, IGroupMemberMuted, IGroupMemberPermissionChanged, IGroupMemberUnmuted
     {

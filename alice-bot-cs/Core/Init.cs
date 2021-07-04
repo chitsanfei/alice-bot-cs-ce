@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SQLite;
 using System.IO;
-using alice_bot_cs.Entity;
 using alice_bot_cs.Entity.Core;
 using alice_bot_cs.Entity.Modules;
-using alice_bot_cs.Extensions;
-using MySql.Data.MySqlClient;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -23,7 +18,8 @@ namespace alice_bot_cs.Core
             InitDirectory();
             InitCoreConfig();
             InitBotBehaviourConfig();
-            InitDB();
+            InitBotDatabase();
+            InitBotDatabaseConfig();
         }
         
         ///<summary>
@@ -35,6 +31,7 @@ namespace alice_bot_cs.Core
             string currPath = AppDomain.CurrentDomain.BaseDirectory;
             string configPath = currPath + @"/config/";
             string dataPath = currPath + @"/data/";
+            string databasePath = currPath + @"/database/";
             if (false == System.IO.Directory.Exists(configPath))
             {
                 System.IO.Directory.CreateDirectory(configPath);
@@ -42,6 +39,10 @@ namespace alice_bot_cs.Core
             if (false == System.IO.Directory.Exists(dataPath))
             {
                 System.IO.Directory.CreateDirectory(dataPath);
+            }
+            if (false == System.IO.Directory.Exists(databasePath))
+            {
+                System.IO.Directory.CreateDirectory(databasePath);
             }
             TraceLog.Log("", "初始化:数据文件夹:执行成功");
             return 0;
@@ -116,32 +117,89 @@ namespace alice_bot_cs.Core
             }
             return 0;
         }
-        
+      
         /// <summary>
-        /// 检查机器人数据库情况并初始化机器人数据库信息
+        /// Init bot database using SQLite
         /// </summary>
-        /// <returns></returns>
-        private int InitDB()
+        /// <returns>execution</returns>
+        private int InitBotDatabase()
         {
-            string dbPath = AppDomain.CurrentDomain.BaseDirectory + @"/db/";
-            string dbFile = dbPath + @"alice.db";
-
-            if (false == System.IO.File.Exists(dbFile)) // 初始化鉴别
+            string dbPath = AppDomain.CurrentDomain.BaseDirectory + @"/database/";
+            string dbFilePath = dbPath + @"Bot.db";
+            
+            if (false == System.IO.File.Exists(dbFilePath)) // 初始化鉴别
             {
-                SQLiteConnection.CreateFile(dbPath);
+                FileStream fs = new FileStream(dbFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Close();
+                // SQLiteConnection.CreateFile(dbPath);
                 
-                SQLiteConnection sqliteConn = new SQLiteConnection("data source=" + dbFile);
-                if (sqliteConn.State != System.Data.ConnectionState.Open)
+                if (Database.SqliteConnection.State != System.Data.ConnectionState.Open)
                 {
-                    sqliteConn.Open();
+                    Database.SqliteConnection.Open();
                     SQLiteCommand cmd = new SQLiteCommand();
-                    cmd.Connection = sqliteConn;
-                    cmd.CommandText = "CREATE TABLE " + "Basic" +
-                                      "(ID int, Item varchar, Content varchar)";
+                    cmd.Connection = Database.SqliteConnection;
+                    
+                    cmd.CommandText = "CREATE TABLE " + "user" +
+                                      "(id int, qqnumber varchar, permission int, mcid varchar, osuid varchar, arcid bigint)";
                     cmd.ExecuteNonQuery();
+                    
+                    cmd.CommandText = "CREATE TABLE " + "qqgroup" +
+                                      "(id int, qgnumber varchar, permission int, setuset int)";
+                    cmd.ExecuteNonQuery();
+                    
+                    cmd.CommandText = "CREATE TABLE " + "config" +
+                                      "(id int, subject varchar, data varchar)";
+                    cmd.ExecuteNonQuery();
+                    
+                    Database.SqliteConnection.Close();
                 }
+            }
+            
+            TraceLog.Log("", "初始化:InitBotDatabase:执行成功");
+            return 0;
+        }
 
-                sqliteConn.Close();
+        /// <summary>
+        /// Set bot config in scheme 'config' of sqlite database, including transforming data from yml text.
+        /// 对本地sqlite数据库的机器人config进行初始化，包括对yml的转储。
+        /// </summary>
+        /// <returns>execution</returns>
+        private int InitBotDatabaseConfig()
+        {
+            if (Database.SqliteConnection.State != System.Data.ConnectionState.Open)
+            {
+                // Deserialize BotBehaviourConfig
+                // 初始化反序列化机器人参数文本
+                var deserializer = new DeserializerBuilder()
+                    .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                    .Build();
+                string s = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"/config/BotBehaviourConfig.yaml");
+                var c = deserializer.Deserialize<BotBehaviourConfig>(s);
+                string menuHelp = c.menu.help;
+                string menuList = c.menu.list;
+                string menuInfo = c.menu.info;
+                
+                // Connect to sqlite Database
+                // 连接到数据库
+                Database.SqliteConnection.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = Database.SqliteConnection;
+
+                cmd.CommandText = "INSERT INTO " + "config" + " " + 
+                                  $"VALUES ('1','menu_help', '{menuHelp}')";
+                cmd.ExecuteNonQueryAsync();
+                
+                cmd.CommandText = "INSERT INTO " + "config" + " " + 
+                                  $"VALUES ('2', 'menu_list', '{menuList}')";
+                cmd.ExecuteNonQueryAsync();
+                
+                cmd.CommandText = "INSERT INTO " + "config" + " " + 
+                                  $"VALUES ('3', 'menu_info', '{menuInfo}')";
+                cmd.ExecuteNonQueryAsync();
+                
+                TraceLog.Log("", "初始化:InitBotDatabaseConfig:执行成功");
+                Database.SqliteConnection.Close();
             }
             return 0;
         }
