@@ -1,13 +1,15 @@
 ﻿using alice_bot_cs.Core; // 核心
 using alice_bot_cs.Entity; // 实体类
 using alice_bot_cs.Extensions; // 扩展
-using alice_bot_cs.Modules; // 插件
+// 插件
 using Mirai_CSharp;
 using Mirai_CSharp.Models;
 using System;
+using System.Data.SQLite;
 using System.IO;
 using System.Threading.Tasks;
 using alice_bot_cs.Entity.Core;
+using alice_bot_cs.Plugins;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -15,6 +17,13 @@ namespace alice_bot_cs
 {
     public static class Program
     {
+        // Connect to Local SQLite database and keep an static address for other class or method to use.
+        public static SQLiteCommand Cmd = new SQLiteCommand();
+        
+        /// <summary>
+        /// Main method for bot action using async.
+        /// </summary>
+        /// <returns>status</returns>
         public static async Task Main()
         {
             Init init = new Init(); // 初始化参数文件

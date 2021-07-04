@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using alice_bot_cs.Core;
-using alice_bot_cs.Entity;
 using alice_bot_cs.Entity.Modules;
 using Mirai_CSharp;
 using Mirai_CSharp.Models;
@@ -11,7 +9,7 @@ using Mirai_CSharp.Plugin.Interfaces;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace alice_bot_cs.Modules
+namespace alice_bot_cs.Plugins
 {
     public partial class BotBehaviourControl : IBotInvitedJoinGroup, INewFriendApply, IGroupMessage
     {
@@ -138,7 +136,7 @@ namespace alice_bot_cs.Modules
         /// <returns></returns>
         public async Task<bool> GroupMessage(MiraiHttpSession session, IGroupMessageEventArgs e)
         {
-            
+            //
             string str = string.Join(null, (IEnumerable<IMessageBase>)e.Chain); // 取消息
             string[] strArray = str.Split(new char[2] { '[', ']' }); // 分割Mirai码部分
             str = strArray[2];
@@ -165,6 +163,8 @@ namespace alice_bot_cs.Modules
             }
             return false; 
         }
+        
+        // todo:delete this method,待删除的方法 @author mashirosa
 
         /// <summary>
         /// 行为菜单解析

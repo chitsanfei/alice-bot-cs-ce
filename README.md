@@ -5,6 +5,7 @@ A simple QQ bot running with MiraiHttp and MiraiCSharp & 一个基于MiraiHttp�
 - `AliceBot`是继`Urara`后由很菜很菜的`MashiroSA`发起的一个自研QQ机器人项目，使用`c#`编写，基于`Mirai(Mirai Core、Mirai Console、Mirai Http、Mirai CSharp)`。目前正在由`MeowCatZ`团队开发中
 - `AliceBot`是运行在非盈利的基础上，一切行为仅供交流学习
 - 该repo的`AliceBot`为社区发行版，开源构建，请勿贩售代码，不建议盈利行为
+- 请注意，该bot依赖MiraiHttp作为中间件，版本为1.x，当前切勿使用2.x，sdk尚未适配
 > AliceBot需要借助Mirai套件下运行，且其为一个独立的机器人
 
 ## 工程文件
