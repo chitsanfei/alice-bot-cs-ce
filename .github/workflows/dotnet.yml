@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ acid ]
+    branches: [ master ]
   pull_request:
-    branches: [ acid ]
+    branches: [ master ]
 
 jobs:
   build:
